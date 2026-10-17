@@ -49,23 +49,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0796600392074538" />
-      <entry key="MS500" value="1.6029039316151472" />
-      <entry key="S2" value="1.8927204174613301" />
-      <entry key="S5" value="2.1185272005456275" />
-      <entry key="S10" value="2.3847345844431107" />
-      <entry key="S30" value="2.737357556127825" />
-      <entry key="S60" value="3.1152773172971324" />
-      <entry key="M2" value="5.530122827621783" />
-      <entry key="M5" value="13.883854547138261" />
-      <entry key="M10" value="20.73505932897998" />
-      <entry key="M15" value="23.885111199732066" />
-      <entry key="M30" value="27.60493212567341" />
-      <entry key="H1" value="29.710730969544834" />
-      <entry key="H2" value="30.83144466103595" />
-      <entry key="H4" value="31.4096140145553" />
-      <entry key="D1" value="31.900742857558008" />
-      <entry key="W1" value="31.985799213463853" />
+      <entry key="MS100" value="1.0438891858959305" />
+      <entry key="MS500" value="1.5873322586487504" />
+      <entry key="S2" value="2.8395718582841165" />
+      <entry key="S5" value="4.165931214612666" />
+      <entry key="S10" value="5.107756781228589" />
+      <entry key="S30" value="6.753246780636678" />
+      <entry key="S60" value="7.814812937773389" />
+      <entry key="M2" value="10.34771255536433" />
+      <entry key="M5" value="18.687126826430912" />
+      <entry key="M10" value="25.83286124813807" />
+      <entry key="M15" value="29.18947563319097" />
+      <entry key="M30" value="33.201167264307436" />
+      <entry key="H1" value="35.49293838312626" />
+      <entry key="H2" value="36.71830452329501" />
+      <entry key="H4" value="37.35194793795655" />
+      <entry key="D1" value="37.890976561462125" />
+      <entry key="W1" value="37.98440018496027" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -87,23 +87,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.813479948479792" />
-      <entry key="MS500" value="1.2209667073683454" />
-      <entry key="S2" value="1.7164067376018768" />
-      <entry key="S5" value="2.0380507965626267" />
-      <entry key="S10" value="2.342553941262933" />
-      <entry key="S30" value="2.722796437856944" />
-      <entry key="S60" value="3.107334127095387" />
-      <entry key="M2" value="5.523806603580719" />
-      <entry key="M5" value="13.878462148915942" />
-      <entry key="M10" value="20.73127545146378" />
-      <entry key="M15" value="23.882265337917083" />
-      <entry key="M30" value="27.60332146917046" />
-      <entry key="H1" value="29.709873162510515" />
-      <entry key="H2" value="30.83100188062778" />
-      <entry key="H4" value="31.409389056196474" />
-      <entry key="D1" value="31.900704860317425" />
-      <entry key="W1" value="31.985793772825733" />
+      <entry key="MS100" value="0.05843604786923294" />
+      <entry key="MS500" value="0.8874572730458352" />
+      <entry key="S2" value="2.5164122310586703" />
+      <entry key="S5" value="4.000438020012921" />
+      <entry key="S10" value="5.012976732275589" />
+      <entry key="S30" value="6.714087122227483" />
+      <entry key="S60" value="7.792795230940146" />
+      <entry key="M2" value="10.334103061445532" />
+      <entry key="M5" value="18.678750660376775" />
+      <entry key="M10" value="25.827518295432863" />
+      <entry key="M15" value="29.18556356607641" />
+      <entry key="M30" value="33.1990056313904" />
+      <entry key="H1" value="35.491799596041" />
+      <entry key="H2" value="36.71771973307092" />
+      <entry key="H4" value="37.351651575083814" />
+      <entry key="D1" value="37.89092660623598" />
+      <entry key="W1" value="37.984393034613845" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -124,7 +124,6 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/run/media/dncrmn/Crucial X9/Documents/School Files/UTSA/Schoolwork/Fall 2026/CS-3443/Codes/DJRS-Prototype",
