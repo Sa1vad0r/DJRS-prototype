@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Update and fix .gitignore">
-      <change afterPath="$PROJECT_DIR$/data/UsersData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/musicData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/CreateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/MusicController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/model/Playlist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/model/Rewind.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/userSession.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DJRS-Prototype.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SampleClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Song.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +16,6 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="9" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,35 +38,35 @@
     &quot;assignee&quot;: &quot;DnCrMn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Sa1vad0r/DJRS-prototype.git",
-    "accountId": "814e0f26-405f-4715-9684-f06fc202cc16"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Sa1vad0r/DJRS-prototype.git&quot;,
+    &quot;accountId&quot;: &quot;814e0f26-405f-4715-9684-f06fc202cc16&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000017259048" />
-      <entry key="MS500" value="1.017676788481967" />
-      <entry key="S2" value="1.3646286934837246" />
-      <entry key="S5" value="1.6679444360159157" />
-      <entry key="S10" value="1.8172786770838425" />
-      <entry key="S30" value="1.9349535954869417" />
-      <entry key="S60" value="1.9669299847904922" />
-      <entry key="M2" value="1.9833259809396364" />
-      <entry key="M5" value="1.993364230828834" />
-      <entry key="M10" value="2.049187460607402" />
-      <entry key="M15" value="2.4890623714327793" />
-      <entry key="M30" value="6.63000211537196" />
-      <entry key="H1" value="16.260387620909974" />
-      <entry key="H2" value="27.04329634257676" />
-      <entry key="H4" value="35.193020897974655" />
-      <entry key="D1" value="43.98055470397976" />
-      <entry key="W1" value="45.70565780729741" />
+      <entry key="MS100" value="1.0612903421314517" />
+      <entry key="MS500" value="2.3519120485339657" />
+      <entry key="S2" value="4.919493685732942" />
+      <entry key="S5" value="10.556241724936765" />
+      <entry key="S10" value="18.73475079670511" />
+      <entry key="S30" value="33.0479846014473" />
+      <entry key="S60" value="39.17718320538592" />
+      <entry key="M2" value="42.85586982877794" />
+      <entry key="M5" value="45.51105414193608" />
+      <entry key="M10" value="46.830860775758644" />
+      <entry key="M15" value="47.63626584835859" />
+      <entry key="M30" value="51.34941764707521" />
+      <entry key="H1" value="60.46005750479794" />
+      <entry key="H2" value="71.66509013254324" />
+      <entry key="H4" value="80.6232520667292" />
+      <entry key="D1" value="90.64917426196267" />
+      <entry key="W1" value="92.65634145281965" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -101,23 +88,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.913831451583518" />
-      <entry key="MS500" value="0.9989791756546987" />
-      <entry key="S2" value="1.3557371148800972" />
-      <entry key="S5" value="1.662910839423501" />
-      <entry key="S10" value="1.8143976642956543" />
-      <entry key="S30" value="1.933897511913972" />
-      <entry key="S60" value="1.966388928745488" />
-      <entry key="M2" value="1.9830521159323782" />
-      <entry key="M5" value="1.993253850131752" />
-      <entry key="M10" value="2.04912326988073" />
-      <entry key="M15" value="2.488970434808675" />
-      <entry key="M30" value="6.629726152152605" />
-      <entry key="H1" value="16.259983619177017" />
-      <entry key="H2" value="27.042945901289876" />
-      <entry key="H4" value="35.192789683073066" />
-      <entry key="D1" value="43.98050611730187" />
-      <entry key="W1" value="45.70565058464574" />
+      <entry key="MS100" value="0.9786819425995859" />
+      <entry key="MS500" value="2.2543346011996235" />
+      <entry key="S2" value="4.861885289931208" />
+      <entry key="S5" value="10.516418124280305" />
+      <entry key="S10" value="18.703522691131347" />
+      <entry key="S30" value="33.03047545220337" />
+      <entry key="S60" value="39.16682697691984" />
+      <entry key="M2" value="42.85020191487122" />
+      <entry key="M5" value="45.508643768960255" />
+      <entry key="M10" value="46.829617039591994" />
+      <entry key="M15" value="47.635401092816494" />
+      <entry key="M30" value="51.34881193302135" />
+      <entry key="H1" value="60.45951253285439" />
+      <entry key="H2" value="71.66466594272305" />
+      <entry key="H4" value="80.6229790750968" />
+      <entry key="D1" value="90.649117387453" />
+      <entry key="W1" value="92.65633300237559" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -142,10 +129,12 @@
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/run/media/dncrmn/Crucial X9/Documents/School Files/UTSA/Schoolwork/Fall 2026/CS-3443/Codes/DJRS-Prototype",
+    "last_opened_file_path": "C:/Users/salva/OneDrive/Desktop/DJRS-prototype",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
@@ -154,6 +143,11 @@
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\salva\OneDrive\Desktop\DJRS-prototype\data" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
