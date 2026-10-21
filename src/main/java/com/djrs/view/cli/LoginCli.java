@@ -4,10 +4,10 @@ import com.djrs.controller.LoginController;
 import com.djrs.model.UserSession;
 
 public class LoginCli extends Cli {
-    private LoginController controller;
+    private LoginController controller = new LoginController();
 
-    public LoginCli(LoginController loginController) {
-        this.controller = loginController;
+    public LoginCli(UserSession currentSession) {
+        super(currentSession);
     }
 
     public LoginController getController() {
@@ -43,6 +43,7 @@ public class LoginCli extends Cli {
 
     @Override
     protected void setupScene() {
+        printSectionHeader("Login");
         System.out.println("--- Welcome Back ---");
         System.out.println("[Sign in to revisit your listening history and create a new rewind.");
     }

@@ -1,13 +1,14 @@
 package com.djrs.view.cli.menuoption;
 
 import com.djrs.controller.ViewRewindController;
+import com.djrs.model.UserSession;
 import com.djrs.view.cli.Cli;
 
 public class ViewRewindCli extends Cli {
     private ViewRewindController controller;
 
-    public ViewRewindCli(ViewRewindController controller) {
-        this.controller = controller;
+    public ViewRewindCli(UserSession currentSession) {
+        super(currentSession);
     }
 
     public ViewRewindController getController() {
@@ -20,7 +21,7 @@ public class ViewRewindCli extends Cli {
 
     @Override
     protected void setupScene() {
-
+        printSectionHeader("View Rewind");
     }
 
     @Override

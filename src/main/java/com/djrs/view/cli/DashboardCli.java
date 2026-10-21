@@ -8,7 +8,7 @@ public class DashboardCli extends Cli {
     private UserSession currentSession;
 
     public DashboardCli(UserSession currentSession) {
-        this.currentSession = currentSession;
+        super(currentSession);
     }
 
     public DashboardController getController() {
@@ -19,14 +19,6 @@ public class DashboardCli extends Cli {
         this.controller = controller;
     }
 
-    public UserSession getSession() {
-        return currentSession;
-    }
-
-    public void setSession(UserSession currentSession) {
-        this.currentSession = currentSession;
-    }
-
     public void showDeleteRewindPrompt() {
         // Ask if user wants to delete or rewind
         // Let controller handle input
@@ -34,7 +26,7 @@ public class DashboardCli extends Cli {
 
     @Override
     protected void setupScene() {
-
+        printSectionHeader("Dashboard");
     }
 
     @Override

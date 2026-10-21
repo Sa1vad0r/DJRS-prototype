@@ -10,8 +10,7 @@ public class MainApplication {
         // Sample flow of main
         // Uses state machine to pass down UserSession
         UserSession currentSession = null;
-        LoginController loginController = new LoginController();
-        LoginCli userLogin = new LoginCli(loginController);
+        LoginCli userLogin = new LoginCli(currentSession);
 
         currentSession = userLogin.runLoginPrompt();
 

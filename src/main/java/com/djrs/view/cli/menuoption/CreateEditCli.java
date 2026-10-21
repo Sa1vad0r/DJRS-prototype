@@ -9,12 +9,12 @@ public class CreateEditCli extends Cli {
     UserSession currentSession;
 
     public CreateEditCli(UserSession currentSession) {
-        this.currentSession = currentSession;
+        super(currentSession);
     }
 
     @Override
     protected void setupScene() {
-
+        printSectionHeader("Create/Edit Rewind");
     }
 
     @Override
