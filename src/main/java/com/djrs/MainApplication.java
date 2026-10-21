@@ -2,19 +2,27 @@ package com.djrs;
 
 import com.djrs.controller.LoginController;
 import com.djrs.model.UserSession;
-import com.djrs.view.LoginCli;
-import com.djrs.view.MusicCli;
-
-import java.io.File;
-import java.util.Scanner;
+import com.djrs.view.cli.DashboardCli;
+import com.djrs.view.cli.LoginCli;
 
 public class MainApplication {
     public static void main(String[] args) {
+        // Sample flow of main
+        // Uses state machine to pass down UserSession
+        UserSession currentSession = null;
         LoginController loginController = new LoginController();
-        Scanner input = new Scanner(System.in);
+        LoginCli userLogin = new LoginCli(loginController);
 
-        UserSession session = new LoginCli(loginController).run(input);
+        currentSession = userLogin.runLoginPrompt();
 
-        new MusicCli(session).run(input);
+        if (currentSession == null) {
+            System.out.println("[System] Failed to initialize user session. Exiting.");
+            return;
+        }
+
+        // Now that the session exists, we can load the main dashboard scene
+        DashboardCli dashboard = new DashboardCli(currentSession);
+        dashboard.setSession(currentSession);
+        dashboard.run();
     }
 }
