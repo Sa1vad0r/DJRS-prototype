@@ -15,7 +15,12 @@ public class MainApplication {
         currentSession = userLogin.runLoginPrompt();
 
         if (currentSession == null) {
-            System.out.println("[System] Failed to initialize user session. Exiting.");
+            if (currentSession.getCurrentUser() != null) {
+                System.out.println("[System] Failed to initialize user session. Exiting.");
+            }
+            else {
+                System.out.println("[System] Exiting.");
+            }
             return;
         }
 
