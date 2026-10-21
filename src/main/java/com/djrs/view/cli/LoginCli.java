@@ -1,6 +1,7 @@
 package com.djrs.view.cli;
 
 import com.djrs.controller.LoginController;
+import com.djrs.io.InputValidator;
 import com.djrs.model.UserSession;
 
 public class LoginCli extends Cli {
@@ -19,55 +20,69 @@ public class LoginCli extends Cli {
         this.controller = controller;
     }
 
-    public UserSession runLoginPrompt() {
+    /**
+     * @return true if the user is now logged in (session singleton has a current user), false otherwise.
+     */
+    public boolean runLoginPrompt() {
         int userChoice = 0;
+        boolean success = false;
 
         setupScene();
         run();
 
         // Ask if user wants to log in or create an account (Let controller handle input)
-        // Maybe an exit option?
         System.out.println("[1] Log in");
         System.out.println("[2] Create an account");
         System.out.println("[3] Exit");
 
         userChoice = controller.readBeginningLoginPrompt();
 
-        switch(userChoice) {
+        switch (userChoice) {
             case 1:
-                setSession(showLoginPrompt());
+                success = showLoginPrompt();
                 break;
             case 2:
-                showCreateAccountPrompt();
+                success = showCreateAccountPrompt();
                 break;
             case 3:
+                success = false;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + userChoice);
         }
 
-
-        // Possible while/do-while loop:
-        // If user has account, show username: password: input prompts, otherwise call showCreateAccountPrompt
-        // Call controller to handle input and let controller call validation of user credentials
-        // Invalid credentials: show error message, ask again
-        // Add exit option
-
-        // Return user session if successful, null otherwise
-        return null;
+        return success;
     }
 
-    private UserSession showLoginPrompt() {
+    private boolean showLoginPrompt() {
+        boolean success = false;
+        System.out.println("Log in --------\n");
 
-        return null;
+        while (!success) {
+            System.out.println("enter your username and password (or type 'esc' to go back)");
+            String username = InputValidator.readString();
+
+            if (username.equalsIgnoreCase("esc")) {
+                return false;
+            }
+
+            String password = InputValidator.readString();
+
+            success = controller.attemptLogin(username, password);
+
+            if (!success) {
+                System.out.println("username and/or password is invalid");
+            }
+        }
+        return success;
     }
 
-    public UserSession showCreateAccountPrompt() {
+    public boolean showCreateAccountPrompt() {
         // Show username: password: input prompts, call controller to handle input and let controller call validation of user credentials
         System.out.println("--- Create Account ---");
 
-        // Return user session if account creation successful, null otherwise
-        return null;
+        // TODO: not implemented yet
+        return false;
     }
 
     @Override

@@ -32,30 +32,30 @@ public class LoginController {
     }
 
     /**
-     * Attempts to log the user in using provided credentials.
+     * Attempts to log the user in using provided credentials. On success, mutates the
+     * shared UserSession singleton with the logged-in user.
      * @param username The username from the CLI input.
      * @param password The password from the CLI input.
-     * @return A UserSession object if successful, or null/null-state if failed.
+     * @return true if authentication succeeded, false otherwise.
      */
-    public UserSession attemptLogin(String username, String password) {
+    public boolean attemptLogin(String username, String password) {
         // 1. Validation Logic: Check user existence in the database/file system
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-            return null; // Failed validation
+            return false; // Failed validation
         }
 
         // 2. Security Logic: Retrieve hashed password for comparison
-        User storedUser = new User();
-        storedUser = storedUser.getUser(username);
+        User storedUser = new User().getUser(username);
 
         if (storedUser != null && verifyPassword(password, storedUser)) {
-            // SUCCESS! The controller creates and returns a valid session object.
+            // SUCCESS! Update the shared session singleton with the logged-in user.
             System.out.println("[Controller]: Authentication successful.");
 
             currentSession.setCurrentUser(storedUser);
-            return currentSession;
+            return true;
         } else {
-            // Failure: Log the attempt (for debugging) and return null.
-            return null;
+            // Failure: Log the attempt (for debugging) and return false.
+            return false;
         }
     }
 

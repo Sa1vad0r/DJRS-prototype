@@ -1,0 +1,21 @@
+[
+  {"id": 1, "firstName": "Aisha", "lastName": "Khan", "username": "akhan92", "password": "P@ssw0rd$"},
+  {"id": 2, "firstName": "Mateo", "lastName": "Rodríguez", "username": "mrodriguez", "password": "SunSh1ne#"},
+  {"id": 3, "firstName": "Yuki", "lastName": "Tanaka", "username": "ytanaka", "password": "S4kura$"},
+  {"id": 4, "firstName": "Fatima", "lastName": "Al-Mansoori", "username": "falmans", "password": "Desert*2025"},
+  {"id": 5, "firstName": "Kwame", "lastName": "Mensah", "username": "kmensah", "password": "L$onKing88"},
+  {"id": 6, "firstName": "Sofia", "lastName": "Ivanova", "username": "sivanova", "password": "3456"},
+  {"id": 7, "firstName": "Rajesh", "lastName": "Patel", "username": "rpatel", "password": "Namast3@22"},
+  {"id": 8, "firstName": "Amira", "lastName": "Hassan", "username": "ahassan", "password": "Pyr@mids99"},
+  {"id": 9, "firstName": "Jonas", "lastName": "Müller", "username": "jmueller", "password": "Berlin$77"},
+  {"id": 10, "firstName": "Gabriela", "lastName": "Silva", "username": "gsilva", "password": "S@mba2025"},
+  {"id": 11, "firstName": "Liam", "lastName": "O’Connor", "username": "loconnor", "password": "Claddagh#45"},
+  {"id": 12, "firstName": "UserF", "lastName": "UserL", "username": "User1", "password": "3456"},
+  {"id": 13, "firstName": "UserF", "lastName": "UserL", "username": "User2", "password": "3456"},
+  {"id": 14, "firstName": "Test", "lastName": "Test", "username": "test", "password": "1234"},
+  {"id": 15, "firstName": "userX", "lastName": "x", "username": "UserX", "password": "1234"},
+  {"id": 16, "firstName": "Hend", "lastName": "a", "username": "a", "password": "a"},
+  {"id": 17, "firstName": "Jack", "lastName": "Alex", "username": "cameron", "password": "1234"},
+  {"id": 18, "firstName": "Samantha", "lastName": "Kosha", "username": "austinChris", "password": "1234"},
+  {"id": 19, "firstName": "Cameron", "lastName": "Alex", "username": "Chris", "password": "1234"}
+]
