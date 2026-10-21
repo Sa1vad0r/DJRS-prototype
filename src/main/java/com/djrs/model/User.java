@@ -1,6 +1,7 @@
 package com.djrs.model;
 
 import com.djrs.io.PasswordHasher;
+import com.djrs.io.UserStore;
 
 public class User {
     // ----- Core Identity Fields -----
@@ -25,10 +26,7 @@ public class User {
     }
 
     public User getUser(String username) {
-        // Get user from /data folder (Most likely stored in UsersData.json)
-
-        // If user not found, return null
-        return null;
+        return UserStore.findUserByUsername(username);
     }
 
     public String getUserID() {

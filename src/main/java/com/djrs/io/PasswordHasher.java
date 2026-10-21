@@ -14,14 +14,8 @@ public class PasswordHasher {
     }
 
     public static boolean checkPassword(String inputPassword, String storedHash) {
-        // TODO: Implement hash checking (e.g., using BCrypt).
-        // This would use something like BCryptPasswordEncoder().matches(inputPassword, storedHash);
+        // No real hashing for this project — plain equality check against the stored password.
         System.out.println("[Hasher]: Verifying password...");
-
-        // Mock logic: If the input password is "password", we pretend it matches a hash.
-        if ("password".equals(inputPassword)) {
-            return true;
-        }
-        return false;
+        return inputPassword.equals(storedHash);
     }
 }

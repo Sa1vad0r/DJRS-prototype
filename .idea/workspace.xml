@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Update and fix .gitignore">
-      <change afterPath="$PROJECT_DIR$/data/userSession.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/UsersData.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/UsersData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/io/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/io/PasswordHasher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/io/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/io/UserStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/LoginCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/LoginCli.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,61 +55,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0612903421314517" />
-      <entry key="MS500" value="2.3519120485339657" />
-      <entry key="S2" value="4.919493685732942" />
-      <entry key="S5" value="10.556241724936765" />
-      <entry key="S10" value="18.73475079670511" />
-      <entry key="S30" value="33.0479846014473" />
-      <entry key="S60" value="39.17718320538592" />
-      <entry key="M2" value="42.85586982877794" />
-      <entry key="M5" value="45.51105414193608" />
-      <entry key="M10" value="46.830860775758644" />
-      <entry key="M15" value="47.63626584835859" />
-      <entry key="M30" value="51.34941764707521" />
-      <entry key="H1" value="60.46005750479794" />
-      <entry key="H2" value="71.66509013254324" />
-      <entry key="H4" value="80.6232520667292" />
-      <entry key="D1" value="90.64917426196267" />
-      <entry key="W1" value="92.65634145281965" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000000014733" />
+      <entry key="S60" value="1.0000038161622107" />
+      <entry key="M2" value="1.006815797810239" />
+      <entry key="M5" value="1.7384001320235798" />
+      <entry key="M10" value="4.9983507815219195" />
+      <entry key="M15" value="8.297217098414656" />
+      <entry key="M30" value="15.04778763598877" />
+      <entry key="H1" value="23.06243598055515" />
+      <entry key="H2" value="38.3683699609714" />
+      <entry key="H4" value="62.30876639671748" />
+      <entry key="D1" value="109.08647764593056" />
+      <entry key="W1" value="121.71376003438182" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="S2" value="1.42409995315875E-194" />
+      <entry key="S5" value="2.8934513783425217E-78" />
+      <entry key="S10" value="1.70101480876592E-39" />
+      <entry key="S30" value="1.1948658258014767E-13" />
+      <entry key="S60" value="3.609677304010069E-7" />
+      <entry key="M2" value="7.864874098810466E-4" />
+      <entry key="M5" value="0.11997170785486791" />
+      <entry key="M10" value="0.7406670131011476" />
+      <entry key="M15" value="1.385784271675613" />
+      <entry key="M30" value="2.6190839461068722" />
+      <entry key="H1" value="3.6142381247507456" />
+      <entry key="H2" value="4.2496990985760235" />
+      <entry key="H4" value="4.609251112208913" />
+      <entry key="D1" value="4.93259420511854" />
+      <entry key="W1" value="4.990313181748758" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9786819425995859" />
-      <entry key="MS500" value="2.2543346011996235" />
-      <entry key="S2" value="4.861885289931208" />
-      <entry key="S5" value="10.516418124280305" />
-      <entry key="S10" value="18.703522691131347" />
-      <entry key="S30" value="33.03047545220337" />
-      <entry key="S60" value="39.16682697691984" />
-      <entry key="M2" value="42.85020191487122" />
-      <entry key="M5" value="45.508643768960255" />
-      <entry key="M10" value="46.829617039591994" />
-      <entry key="M15" value="47.635401092816494" />
-      <entry key="M30" value="51.34881193302135" />
-      <entry key="H1" value="60.45951253285439" />
-      <entry key="H2" value="71.66466594272305" />
-      <entry key="H4" value="80.6229790750968" />
-      <entry key="D1" value="90.649117387453" />
-      <entry key="W1" value="92.65633300237559" />
+      <entry key="MS100" value="0.01757903882326264" />
+      <entry key="MS500" value="0.4456552479484856" />
+      <entry key="S2" value="0.8170521107297588" />
+      <entry key="S5" value="0.9223588146286315" />
+      <entry key="S10" value="0.9603951346339856" />
+      <entry key="S30" value="0.9866201564194277" />
+      <entry key="S60" value="0.9932916852239032" />
+      <entry key="M2" value="1.0042008318676565" />
+      <entry key="M5" value="1.8550144992526356" />
+      <entry key="M10" value="5.732464558399487" />
+      <entry key="M15" value="9.675305014693022" />
+      <entry key="M30" value="17.65984560667856" />
+      <entry key="H1" value="26.671856260786107" />
+      <entry key="H2" value="42.61517927772143" />
+      <entry key="H4" value="66.9163776246074" />
+      <entry key="D1" value="114.01875095244229" />
+      <entry key="W1" value="126.7040256895489" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -126,7 +131,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feat/structure-revamped",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/salva/OneDrive/Desktop/DJRS-prototype",
@@ -147,6 +152,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\salva\OneDrive\Desktop\DJRS-prototype\data" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.djrs.MainApplication" />
+      <module name="DJRS-prototype" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djrs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
