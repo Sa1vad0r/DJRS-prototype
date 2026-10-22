@@ -21,7 +21,24 @@ public class DashboardCli extends Cli {
 
     public void showDeleteRewindPrompt() {
         // Ask if user wants to delete or rewind
+        System.out.println("Would you like to delete or rewind?");
+        System.out.println("[1] Delete");
+        System.out.println("[2] Rewind");
         // Let controller handle input
+        int userChoice;
+
+        userChoice = controller.readUserInput();
+
+        switch (userChoice) {
+            case 1:
+                //delete
+                break;
+            case 2:
+                //rewind
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + userChoice);
+        }
     }
 
     @Override

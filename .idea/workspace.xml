@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Update and fix .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/UsersData.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/UsersData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/io/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/io/PasswordHasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/io/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/io/UserStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/LoginCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/LoginCli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/DashboardCli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/view/cli/DashboardCli.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +126,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feat/structure-revamped",
+    "git-widget-placeholder": "#4 on yucky",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/salva/OneDrive/Desktop/DJRS-prototype",
