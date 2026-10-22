@@ -1,35 +1,45 @@
 package com.djrs.model;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class UsersData {
+    private final Gson gson; // used for json operations
     private ArrayList<User> users;
     private String fileName;
     private static final String DEFAULT_FILE_NAME = "usersData.json";
 
     public UsersData() {
-        this.users = new ArrayList<>();
-        this.fileName = DEFAULT_FILE_NAME;
+        gson = new GsonBuilder().setPrettyPrinting().create();
+        users = new ArrayList<>();
+        fileName = DEFAULT_FILE_NAME;
     }
 
     public UsersData(String fileName) {
+        gson = new GsonBuilder().setPrettyPrinting().create();
         this.users = new ArrayList<>();
+
+        if (!fileName.contains(".json")) {
+            fileName += ".json";
+        }
         this.fileName = fileName;
-        // setFileName(fileName);
     }
 
     public ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        if (users != null) {
-            this.users = users;
-        }
+        return new ArrayList<>(users);
     }
 
     public String getFileName() {
@@ -37,90 +47,84 @@ public class UsersData {
     }
 
     public void setFileName(String fileName) {
-        if (fileName == null || fileName.isBlank()) {
-            return;
+        if (fileName != null && !fileName.isBlank()) {
+            this.fileName = fileName;
         }
-        this.fileName = fileName;
+    }
+
+    public String getFullPath() {
+        return "data/" + fileName;
+    }
+
+    public void loadUsersData() {
+        users.clear(); // Clear current array list to replace any existing data
+
+        try (Reader reader = Files.newBufferedReader(Paths.get(getFullPath()))) {
+            // Import data from json
+            // JSON fields and classes fields MUST BE THE SAME (name-wise)
+            users = gson.fromJson(reader, new TypeToken<ArrayList<User>>() {
+            }.getType());
+        } catch (IOException e) {
+            System.out.println("[ERROR]: I/O error occurred while reading the file.");
+            e.printStackTrace();
+        }
+    }
+
+    public boolean saveDataToFile() {
+        File file = new File(getFullPath());
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(users, writer);
+            return true;
+        } catch (IOException e) {
+            System.out.println("[ERROR]: I/O error occurred while writing to the file.");
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public void addUser(User user) {
-        if (user != null) {
+        // User object must exist and must not be a duplicate
+        if (user != null && !users.contains(user)) {
             users.add(user);
         }
     }
 
-    public void loadUsersData() {
-        File file = new File("data/" + fileName);
+    public boolean deleteUser(User user) {
+        if (user == null || users.contains(user))
+            return false;
 
-        try (Scanner scanner = new Scanner(file)){
-            scanner.nextLine(); // Skip the header line of csv file
-            // while (scanner.hasNextLine()) {
-            //     String line = scanner.nextLine().trim();
-            //     User user = convertUserJSONToUser(line);
-            //     addAidShip(aidShip);
-            // }
-        }
-        catch (IOException e) {
-            System.out.println("[ERROR]: Failed to load users data.");
-            e.printStackTrace();
-        }
+        users.remove(user);
+
+        return saveDataToFile();
     }
 
-    public User findUser(String displayName) {
+    public User findUser(String username) {
         for (User user : users) {
-            if (user.getDisplayName().equals(displayName)) {
+            if (user.getUserName().equals(username)) {
                 return user;
             }
         }
+
         return null;
     }
 
-    public boolean isUserExists(String displayName) {
-        return findUser(displayName) != null;
-    }
+    private String readFileToString() {
+        String jsonString = null;
+        File file = new File(getFullPath());
 
-    public boolean updateUser(User user) {
-        if (!isUserExists(user.getDisplayName())) return false;
+        try {
+            jsonString = new BufferedReader(new FileReader(file))
+                    .lines()
+                    .map(String::join) // Join all of the strings inside of the json file
+                    .collect(Collectors.joining("\n"));
 
-        User existingUser = findUser(user.getDisplayName());
-        if (!deleteUser(user)) return false;
-
-        addUser(user);
-
-        return saveDataToFile();
-    }
-
-    public boolean deleteUser(User user) {
-        User existingUser = findUser(user.getDisplayName());
-
-        if (existingUser == null) return false;
-
-        users.remove(existingUser);
-
-        return saveDataToFile();
-    }
-
-    private boolean saveDataToFile() {
-        File file = new File("data/" + fileName);
-
-        try (FileWriter writer = new FileWriter(file)){
-            // Write to json
-        } catch (IOException e) {
-            System.out.println("[ERROR]: I/O error while saving users data.");
+        } catch (FileNotFoundException e) {
+            System.out.println("[ERROR]: Error occurred while reading the file.");
             e.printStackTrace();
         }
 
-        return true;
-    }
-
-    private User convertUserJSONToUser(String userJSONField) {
-        // Parse userJSONField to User object
-        return null;
-    }
-
-    private String convertUserToJSONField(User user) {
-        // Return a string representation of the user object converted into a json field
-        return "";
+        return jsonString;
     }
 
     // Good practice to make toString for model classes
@@ -131,7 +135,7 @@ public class UsersData {
         for (User user : users) {
             usersList.append("  ").append(user.toString()).append("\n");
         }
-        usersList.append("]");
+        usersList.append(" ]");
 
         return usersList.toString();
     }
