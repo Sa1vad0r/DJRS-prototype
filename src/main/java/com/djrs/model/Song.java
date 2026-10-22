@@ -30,7 +30,8 @@ public class Song {
         dateListened = LocalDate.now();
     }
 
-    public Song(String title, ArtistManager artists, Album album, GenreManager genres, int plays, LocalDate dateListened) {
+    public Song(String title, ArtistManager artists, Album album, GenreManager genres, int plays,
+            LocalDate dateListened) {
         this.title = title;
         this.artists = artists;
         this.album = album;
@@ -85,5 +86,14 @@ public class Song {
 
     public void setDateListened(LocalDate dateListened) {
         this.dateListened = dateListened;
+    }
+
+    public Artist findArtist(String artistName) {
+        Artist artist = artists.findArtist(artistName);
+
+        if (artist != null)
+            return artist;
+
+        return null;
     }
 }

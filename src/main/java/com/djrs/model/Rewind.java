@@ -45,8 +45,8 @@ public class Rewind {
         Set<Song> setSongs = new LinkedHashSet<>(initialQuery);
 
         if (setSongs.addAll(searchSongByArtist(query))) {
-           ArrayList<Song> finalQuery = new ArrayList<>(setSongs);
-           return finalQuery;
+            ArrayList<Song> finalQuery = new ArrayList<>(setSongs);
+            return finalQuery;
         }
 
         return null;
@@ -65,7 +65,7 @@ public class Rewind {
     public ArrayList<Song> searchSongByArtist(String artist) {
         ArrayList<Song> foundSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getArtist().equals(artist)) {
+            if (song.findArtist(artist) != null) {
                 foundSongs.add(song);
             }
         }
