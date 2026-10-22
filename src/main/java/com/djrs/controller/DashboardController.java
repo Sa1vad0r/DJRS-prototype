@@ -21,4 +21,14 @@ public class DashboardController {
 
         return userChoice;
     }
+
+    public void delete(){
+        System.out.println("Pick a rewind to delete: ");
+        //Todo: Delete logic for the json files
+    }
+
+    public void rewind(){
+        System.out.println("Pick a rewind to view: ");
+        //Todo: Rewind logic for the json files
+    }
 }

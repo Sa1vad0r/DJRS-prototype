@@ -31,10 +31,10 @@ public class DashboardCli extends Cli {
 
         switch (userChoice) {
             case 1:
-                //delete
+                controller.delete();
                 break;
             case 2:
-                //rewind
+                controller.rewind();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + userChoice);
@@ -52,5 +52,6 @@ public class DashboardCli extends Cli {
         // Show username and rewinds
         controller.initialize();
 
+        showDeleteRewindPrompt();
     }
 }
