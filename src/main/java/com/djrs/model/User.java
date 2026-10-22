@@ -5,8 +5,10 @@ import com.djrs.io.UserStore;
 
 public class User {
     // ----- Core Identity Fields -----
-    private String userID;      // Unique ID assigned by the system/database (e.g., UUID or Long)
-    private String displayName; // What the user sees (ex: Triple T)
+    private String id; // Unique ID assigned by the system/database (e.g., UUID or Long)
+    private String firstName;
+    private String lastName;
+    private String username; // What the user sees (ex: Triple T)
     private String passwordHash; // Hashed password. Don't put the actual password in here.
 
     // ----- Metadata Fields -----
@@ -14,14 +16,24 @@ public class User {
     // etc.
 
     public User() {
-        this.userID = "";
-        this.displayName = "";
+        this.id = "";
+        this.username = "";
         this.passwordHash = "";
     }
 
-    public User(String userID, String displayName, String passwordHash) {
-        this.userID = userID;
-        this.displayName = displayName;
+    public User(String id, String username, String passwordHash) {
+        this.id = id;
+        this.firstName = "";
+        this.lastName = "";
+        this.username = username;
+        this.passwordHash = passwordHash;
+    }
+
+    public User(String id, String firstName, String lastName, String username, String passwordHash) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
         this.passwordHash = passwordHash;
     }
 
@@ -30,19 +42,35 @@ public class User {
     }
 
     public String getUserID() {
-        return userID;
+        return id;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserID(String id) {
+        this.id = id;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getPasswordHash() {
@@ -55,7 +83,20 @@ public class User {
 
     public boolean checkPassword(String inputPassword, String storedHash) {
         // Check if the input password matches the stored hash.
-        // Use PasswordHasher.checkPassword(inputPassword, storedHash) for a simple check.
+        // Use PasswordHasher.checkPassword(inputPassword, storedHash) for a simple
+        // check.
         return PasswordHasher.checkPassword(inputPassword, storedHash);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder userDetails = new StringBuilder();
+        userDetails.append("User[ ").append("id: ").append(this.id)
+                .append(", firstName: ").append(this.firstName)
+                .append(", lastName: ").append(this.lastName)
+                .append(", username: ").append(this.username)
+                .append(", passwordHash: ").append(this.passwordHash)
+                .append(" ]");
+        return userDetails.toString();
     }
 }
