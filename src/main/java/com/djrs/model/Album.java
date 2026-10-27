@@ -13,6 +13,18 @@ public class Album {
         plays = 0;
     }
 
+    public Album(String name) {
+        this.name = name;
+        tracks = 0;
+        plays = 0;
+    }
+
+    public Album(String name, int tracks) {
+        this.name = name;
+        this.tracks = tracks;
+        plays = 0;
+    }
+
     public Album(String name, int tracks, int plays) {
         this.name = name;
         this.tracks = tracks;

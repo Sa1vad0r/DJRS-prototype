@@ -9,6 +9,10 @@ public class GenreManager {
         genres = new ArrayList<>();
     }
 
+    public GenreManager(ArrayList<Genre> genres) {
+        this.genres = genres;
+    }
+
     public ArrayList<Genre> getGenres() {
         return genres;
     }
@@ -39,5 +43,17 @@ public class GenreManager {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder genreList = new StringBuilder("ArtistManager\n[artists:\n");
+
+        for (Genre genre : genres) {
+            genreList.append("  ").append(genre.toString()).append("\n");
+        }
+        genreList.append(" ]");
+
+        return genreList.toString();
     }
 }

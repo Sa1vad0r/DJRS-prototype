@@ -38,9 +38,15 @@ public final class DateRange {
         return end;
     }
 
-    public boolean contains(LocalDateTime date) {
+     public boolean isInRange(LocalDateTime date) {
+         if (date == null) {
+             return false;
+         }
 
-    }
+         // Check if the date is within the range (inclusive)
+         return (date.isEqual(start) || date.isEqual(end) || (date.isAfter(start) && date.isBefore(end)));
+     }
+
     @Override
     public String toString() {
         return "DateRange[start=" + start + ", end=" + end + "]";

@@ -4,6 +4,11 @@ public class Artist {
     private String name;
     private int plays;
 
+    public Artist(String name) {
+        this.name = name;
+        plays = 0;
+    }
+
     public Artist(String name, int plays) {
         this.name = name;
         this.plays = plays;

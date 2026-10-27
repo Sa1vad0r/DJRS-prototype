@@ -9,6 +9,10 @@ public class ArtistManager {
         artists = new ArrayList<>();
     }
 
+    public ArtistManager(ArrayList<Artist> artists) {
+        this.artists = artists;
+    }
+
     public ArrayList<Artist> getArtists() {
         return artists;
     }
@@ -18,8 +22,7 @@ public class ArtistManager {
     }
 
     public void addArtist(Artist artist) {
-        if (artist != null && !artists.contains(artist))
-        {
+        if (artist != null && !artists.contains(artist)) {
             artists.add(artist);
         }
     }
@@ -39,5 +42,17 @@ public class ArtistManager {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder artistsList = new StringBuilder("ArtistManager\n[artists:\n");
+
+        for (Artist artist : artists) {
+            artistsList.append("  ").append(artist.toString()).append("\n");
+        }
+        artistsList.append(" ]");
+
+        return artistsList.toString();
     }
 }

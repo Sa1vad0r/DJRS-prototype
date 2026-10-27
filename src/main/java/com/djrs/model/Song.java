@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Song {
     // Has info on the song like title, artist, album, genre
+    private String songID;
     private String title;
     private ArtistManager artists;
     private Album album;
@@ -13,6 +14,7 @@ public class Song {
     private LocalDate dateListened;
 
     public Song() {
+        songID = "";
         title = "";
         artists = new ArtistManager();
         album = new Album();
@@ -21,7 +23,8 @@ public class Song {
         dateListened = LocalDate.now();
     }
 
-    public Song(String title, ArtistManager artists, Album album, GenreManager genres) {
+    public Song(String songID, String title, ArtistManager artists, Album album, GenreManager genres) {
+        this.songID = songID;
         this.title = title;
         this.artists = artists;
         this.album = album;
@@ -30,14 +33,23 @@ public class Song {
         dateListened = LocalDate.now();
     }
 
-    public Song(String title, ArtistManager artists, Album album, GenreManager genres, int plays,
+    public Song(String songID, String title, ArtistManager artists, Album album, GenreManager genres, int plays,
             LocalDate dateListened) {
+        this.songID = songID;
         this.title = title;
         this.artists = artists;
         this.album = album;
         this.genres = genres;
         this.plays = plays;
         this.dateListened = dateListened;
+    }
+
+    public String getSongID() {
+        return songID;
+    }
+
+    public void setSongID(String songID) {
+        this.songID = songID;
     }
 
     public String getTitle() {
@@ -52,8 +64,8 @@ public class Song {
         return artists.getArtists();
     }
 
-    public void setArtists(ArtistManager artists) {
-        this.artists = artists;
+    public void setArtists(ArrayList<Artist> artists) {
+        this.artists.setArtists(artists);
     }
 
     public Album getAlbum() {
@@ -68,8 +80,8 @@ public class Song {
         return genres.getGenres();
     }
 
-    public void setGenres(GenreManager genres) {
-        this.genres = genres;
+    public void setGenres(ArrayList<Genre> genres) {
+        this.genres.setGenres(genres);
     }
 
     public int getPlays() {
@@ -95,5 +107,15 @@ public class Song {
             return artist;
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Song[").append("songID: ").append(songID).append(", title: ").append(title)
+                .append("\n").append(artists).append(", album: ").append(album).append("\n").append(genres)
+                .append(", plays: ").append(plays).append(", dateListened: ").append(dateListened)
+        .append("]");
+        return sb.toString();
     }
 }
