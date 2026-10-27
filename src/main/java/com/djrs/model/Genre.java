@@ -4,6 +4,16 @@ public class Genre {
     private String name;
     private int plays;
 
+    public Genre(String name) {
+        this.name = name;
+        plays = 0;
+    }
+
+    public Genre(String name, int plays) {
+        this.name = name;
+        this.plays = plays;
+    }
+
     public String getName() {
         return name;
     }

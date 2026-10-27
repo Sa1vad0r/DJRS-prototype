@@ -3,10 +3,11 @@ package com.djrs.controller;
 import com.djrs.io.InputValidator;
 import com.djrs.model.User;
 import com.djrs.model.UserSession;
+import com.djrs.model.UsersData;
 
 public class LoginController {
     UserSession currentSession;
-    // UsersData users;
+    UsersData users;
 
     public LoginController(UserSession currentSession) {
         this.currentSession = currentSession;
@@ -14,6 +15,8 @@ public class LoginController {
 
     public void initialize() {
         // --- Setup tasks go here ---
+        users = new UsersData();
+        users.loadUsersData();
 
         // Load system configuration data:
         System.out.println("[Controller]: Loading system configuration data...");
@@ -45,7 +48,7 @@ public class LoginController {
         }
 
         // 2. Security Logic: Retrieve hashed password for comparison
-        User storedUser = new User().getUser(username);
+        User storedUser = users.findUser(username);
 
         if (storedUser != null && verifyPassword(password, storedUser)) {
             // SUCCESS! Update the shared session singleton with the logged-in user.

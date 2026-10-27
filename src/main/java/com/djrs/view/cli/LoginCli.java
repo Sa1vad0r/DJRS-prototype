@@ -94,7 +94,6 @@ public class LoginCli extends Cli {
 
     @Override
     public void run() {
-        setupScene();
         controller.initialize();
     }
 }

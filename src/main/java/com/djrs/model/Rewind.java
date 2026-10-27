@@ -17,6 +17,14 @@ public class Rewind {
         rewindId = "";
         title = "";
         dateRange = new DateRange(LocalDateTime.now(), LocalDateTime.now());
+        songs = new ArrayList<>();
+    }
+
+    public Rewind(String rewindId, String title, DateRange dateRange) {
+        this.rewindId = rewindId;
+        this.title = title;
+        this.dateRange = dateRange;
+        songs = new ArrayList<>();
     }
 
     public Rewind(String rewindId, String title, LocalDateTime startDate, LocalDateTime endDate) {
@@ -37,18 +45,54 @@ public class Rewind {
         return rewindId;
     }
 
+    public DateRange getDateRange() {
+        return dateRange;
+    }
+
+    public void setRewindId(String rewindId) {
+        this.rewindId = rewindId;
+    }
+
+    public ArrayList<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(ArrayList<Song> songs) {
+        this.songs = songs;
+    }
+
+    public boolean addSong(Song song) {
+        if (song != null && !songs.contains(song)) {
+            // For now, song ID is the index of the song in the list + 1
+            song.setSongID(String.format("%d",songs.size() + 1));
+            songs.add(song);
+            return true;
+        }
+        return false;
+    }
+
+    public void setDateRange(DateRange dateRange) {
+        this.dateRange = dateRange;
+    }
+
     public ArrayList<Song> searchSong(String query) {
-        // Find song through title first, then thrSough artist
+        // Find song through title first, then through artist
         ArrayList<Song> initialQuery = new ArrayList<>();
 
         initialQuery = searchSongByTitle(query);
-        Set<Song> setSongs = new LinkedHashSet<>(initialQuery);
+        Set<Song> songsSet = new LinkedHashSet<>(initialQuery);
 
-        if (setSongs.addAll(searchSongByArtist(query))) {
-           ArrayList<Song> finalQuery = new ArrayList<>(setSongs);
-           return finalQuery;
+        songsSet.addAll(searchSongByArtist(query));
+        ArrayList<Song> finalQuery = new ArrayList<>(songsSet);
+        return finalQuery;
+    }
+
+    public Song findSong(Song song) {
+        for (Song track : songs) {
+            if (track.getSongID().equals(song.getSongID())) {
+                return track;
+            }
         }
-
         return null;
     }
 
@@ -65,10 +109,26 @@ public class Rewind {
     public ArrayList<Song> searchSongByArtist(String artist) {
         ArrayList<Song> foundSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getArtist().equals(artist)) {
+            if (song.findArtist(artist) != null) {
                 foundSongs.add(song);
             }
         }
         return foundSongs;
+    }
+
+    public boolean updateSong(Song song) {
+        Song foundSong = findSong(song);
+
+        if (foundSong == null)
+            return false;
+
+        // Update song info
+        foundSong.setTitle(song.getTitle());
+        foundSong.setArtists(song.getArtists());
+        foundSong.setAlbum(song.getAlbum());
+        foundSong.setGenres(song.getGenres());
+        foundSong.setDateListened(song.getDateListened());
+
+        return true;
     }
 }

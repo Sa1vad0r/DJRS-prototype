@@ -1,7 +1,6 @@
 package com.djrs.model;
 
 import com.djrs.io.PasswordHasher;
-import com.djrs.io.UserStore;
 
 public class User {
     // ----- Core Identity Fields -----
@@ -10,10 +9,6 @@ public class User {
     private String lastName;
     private String username; // What the user sees (ex: Triple T)
     private String passwordHash; // Hashed password. Don't put the actual password in here.
-
-    // ----- Metadata Fields -----
-    // accountCreatedAt
-    // etc.
 
     public User() {
         this.id = "";
@@ -35,10 +30,6 @@ public class User {
         this.lastName = lastName;
         this.username = username;
         this.passwordHash = passwordHash;
-    }
-
-    public User getUser(String username) {
-        return UserStore.findUserByUsername(username);
     }
 
     public String getUserID() {
