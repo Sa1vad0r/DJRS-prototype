@@ -1,0 +1,261 @@
+/* ==========================================================================
+   DJRS Rewind - JavaFX stylesheet (dark theme)
+   Load with:  scene.getStylesheets().add(getClass().getResource("/djrs-theme.css").toExternalForm());
+   Colors are looked-up colors on .root, so you can retune the whole theme here.
+   ========================================================================== */
+
+.root {
+    /* ---- Palette ---- */
+    -djrs-bg:            #0c0c0e;   /* app background */
+    -djrs-surface:       #18181a;   /* cards, panels, table */
+    -djrs-surface-alt:   #212125;   /* inputs, hovered rows */
+    -djrs-border:        #2e2e34;
+    -djrs-text:          #ffffff;
+    -djrs-text-muted:    #9a9aa5;
+    -djrs-primary:       #7c7ad0;   /* lavender/purple buttons */
+    -djrs-primary-hover: #918fe0;
+    -djrs-primary-press: #6361b5;
+    -djrs-accent:        #76b87a;   /* green: highlights, stats, "Add Rewind" */
+    -djrs-accent-hover:  #8ccc90;
+    -djrs-accent-press:  #5fa064;
+    -djrs-danger:        #e5484d;
+    -djrs-danger-hover:  #ef6c70;
+    -djrs-warn:          #efefb3;   /* yellow profile dot */
+
+    /* ---- Base ---- */
+    -fx-base: -djrs-surface;
+    -fx-background: -djrs-bg;
+    -fx-background-color: -djrs-bg;
+    -fx-control-inner-background: -djrs-surface-alt;
+    -fx-accent: -djrs-primary;
+    -fx-focus-color: -djrs-primary;
+    -fx-faint-focus-color: transparent;
+    -fx-text-fill: -djrs-text;
+    -fx-font-family: "Poppins", "Outfit", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* ---------- Typography ---------- */
+.label { -fx-text-fill: -djrs-text; }
+.label-muted, .subtitle { -fx-text-fill: -djrs-text-muted; -fx-font-size: 12px; }
+.title        { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
+.heading      { -fx-font-size: 20px; -fx-font-weight: bold; }
+.app-logo     { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
+.text-accent  { -fx-text-fill: -djrs-accent; }
+.text-primary { -fx-text-fill: -djrs-primary; }
+.text-danger  { -fx-text-fill: -djrs-danger; }
+
+/* Big "Your Most Listened to Song was..." slides */
+.slide-title  { -fx-font-size: 44px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; -fx-text-alignment: center; }
+.slide-stat   { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -djrs-accent; }
+.slide-caption{ -fx-font-size: 16px; -fx-text-fill: -djrs-text; }
+
+/* ---------- Layout containers ---------- */
+.nav-bar {
+    -fx-background-color: -djrs-bg;
+    -fx-padding: 10 20 10 20;
+    -fx-spacing: 14;
+    -fx-alignment: center-left;
+    -fx-border-color: -djrs-border;
+    -fx-border-width: 0 0 1 0;
+}
+.nav-link { -fx-text-fill: -djrs-text-muted; -fx-background-color: transparent; -fx-cursor: hand; }
+.nav-link:hover, .nav-link:selected { -fx-text-fill: -djrs-text; }
+
+.card, .panel {
+    -fx-background-color: -djrs-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -djrs-border;
+    -fx-border-radius: 10;
+    -fx-padding: 16;
+}
+.card:hover { -fx-border-color: -djrs-primary; }
+
+/* Login / Create Account box */
+.auth-box {
+    -fx-background-color: rgba(18,18,20,0.92);
+    -fx-background-radius: 12;
+    -fx-border-color: -djrs-border;
+    -fx-border-radius: 12;
+    -fx-padding: 28;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 24, 0.2, 0, 6);
+}
+
+/* Modal / dialog (Profile, Delete rewind, etc.) */
+.modal, .dialog-pane {
+    -fx-background-color: -djrs-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -djrs-border;
+    -fx-border-radius: 10;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 30, 0.2, 0, 8);
+}
+.dialog-pane .header-panel { -fx-background-color: transparent; }
+.dialog-pane .content.label { -fx-text-fill: -djrs-text; }
+
+/* ---------- Buttons ---------- */
+.button {
+    -fx-background-color: -djrs-primary;
+    -fx-text-fill: #0c0c0e;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 7 16 7 16;
+    -fx-cursor: hand;
+}
+.button:hover   { -fx-background-color: -djrs-primary-hover; }
+.button:pressed { -fx-background-color: -djrs-primary-press; }
+.button:focused { -fx-background-color: -djrs-primary, -djrs-primary; -fx-background-insets: 0, 0; }
+.button:disabled { -fx-opacity: 0.45; }
+
+.button-accent         { -fx-background-color: -djrs-accent; -fx-text-fill: #0c0c0e; }
+.button-accent:hover   { -fx-background-color: -djrs-accent-hover; }
+.button-accent:pressed { -fx-background-color: -djrs-accent-press; }
+
+.button-danger         { -fx-background-color: -djrs-danger; -fx-text-fill: white; }
+.button-danger:hover   { -fx-background-color: -djrs-danger-hover; }
+
+/* Outlined/ghost ("Previous", "Next" pills on the slides) */
+.button-ghost {
+    -fx-background-color: transparent;
+    -fx-border-color: -djrs-text;
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
+    -fx-text-fill: -djrs-text;
+    -fx-padding: 4 14 4 14;
+    -fx-font-size: 11px;
+}
+.button-ghost:hover { -fx-background-color: rgba(255,255,255,0.12); }
+
+.button-link { -fx-background-color: transparent; -fx-text-fill: -djrs-primary; -fx-underline: true; -fx-padding: 0; }
+.button-link:hover { -fx-text-fill: -djrs-primary-hover; }
+
+/* ---------- Text inputs ---------- */
+.text-field, .password-field, .text-area, .combo-box-base, .spinner .text-field {
+    -fx-background-color: -djrs-surface-alt;
+    -fx-background-radius: 6;
+    -fx-border-color: -djrs-border;
+    -fx-border-radius: 6;
+    -fx-text-fill: -djrs-text;
+    -fx-prompt-text-fill: -djrs-text-muted;
+    -fx-highlight-fill: -djrs-primary;
+    -fx-highlight-text-fill: white;
+    -fx-padding: 7 10 7 10;
+}
+.text-field:focused, .password-field:focused, .text-area:focused, .combo-box-base:focused {
+    -fx-border-color: -djrs-primary;
+}
+.text-field.error, .password-field.error { -fx-border-color: -djrs-danger; }
+.text-area .content { -fx-background-color: transparent; }
+
+.combo-box .list-cell { -fx-text-fill: -djrs-text; -fx-background-color: transparent; }
+.combo-box-popup .list-view { -fx-background-color: -djrs-surface; -fx-border-color: -djrs-border; }
+.combo-box-popup .list-cell:filled:hover,
+.combo-box-popup .list-cell:filled:selected { -fx-background-color: -djrs-primary; -fx-text-fill: #0c0c0e; }
+
+.check-box .box, .radio-button .radio {
+    -fx-background-color: -djrs-surface-alt;
+    -fx-border-color: -djrs-border;
+    -fx-background-radius: 4; -fx-border-radius: 4;
+}
+.check-box:selected .box, .radio-button:selected .radio { -fx-background-color: -djrs-primary; }
+.check-box:selected .mark { -fx-background-color: #0c0c0e; }
+.radio-button .radio { -fx-background-radius: 20; -fx-border-radius: 20; }
+.radio-button:selected .dot { -fx-background-color: #0c0c0e; }
+
+/* Toggle switch (Settings) */
+.toggle-button {
+    -fx-background-color: -djrs-surface-alt;
+    -fx-text-fill: -djrs-text;
+    -fx-background-radius: 14;
+    -fx-border-color: -djrs-border; -fx-border-radius: 14;
+}
+.toggle-button:selected { -fx-background-color: -djrs-accent; -fx-text-fill: #0c0c0e; }
+
+/* ---------- Table (rewind list) ---------- */
+.table-view {
+    -fx-background-color: -djrs-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -djrs-border;
+    -fx-border-radius: 8;
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: -djrs-primary;
+    -fx-selection-bar-non-focused: #4c4b8a;
+}
+.table-view .column-header-background { -fx-background-color: -djrs-surface-alt; -fx-background-radius: 8 8 0 0; }
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: -djrs-border; -fx-border-width: 0 0 1 0;
+}
+.table-view .column-header .label { -fx-text-fill: -djrs-text-muted; -fx-font-weight: bold; -fx-font-size: 11px; }
+.table-row-cell { -fx-background-color: transparent; -fx-border-color: -djrs-border; -fx-border-width: 0 0 1 0; }
+.table-row-cell:odd { -fx-background-color: rgba(255,255,255,0.02); }
+.table-row-cell:hover { -fx-background-color: -djrs-surface-alt; }
+.table-row-cell:selected { -fx-background-color: -djrs-primary; }
+.table-row-cell:selected .table-cell { -fx-text-fill: #0c0c0e; }
+.table-cell { -fx-text-fill: -djrs-text; -fx-padding: 6 8 6 8; }
+
+.list-view { -fx-background-color: -djrs-surface; -fx-border-color: -djrs-border; }
+.list-cell { -fx-background-color: transparent; -fx-text-fill: -djrs-text; }
+.list-cell:hover { -fx-background-color: -djrs-surface-alt; }
+.list-cell:selected { -fx-background-color: -djrs-primary; -fx-text-fill: #0c0c0e; }
+
+/* ---------- Tabs ---------- */
+.tab-pane > .tab-header-area > .tab-header-background { -fx-background-color: transparent; }
+.tab-pane .tab { -fx-background-color: transparent; -fx-background-radius: 6 6 0 0; }
+.tab-pane .tab .tab-label { -fx-text-fill: -djrs-text-muted; }
+.tab-pane .tab:selected { -fx-background-color: -djrs-surface; }
+.tab-pane .tab:selected .tab-label { -fx-text-fill: -djrs-text; }
+.tab-pane > .tab-content-area { -fx-background-color: -djrs-surface; }
+
+/* ---------- Menus & tooltips ---------- */
+.menu-bar { -fx-background-color: -djrs-bg; }
+.menu-bar .label { -fx-text-fill: -djrs-text; }
+.context-menu, .menu-bar .context-menu {
+    -fx-background-color: -djrs-surface;
+    -fx-border-color: -djrs-border;
+    -fx-background-radius: 6; -fx-border-radius: 6;
+}
+.menu-item:focused { -fx-background-color: -djrs-primary; }
+.menu-item:focused .label { -fx-text-fill: #0c0c0e; }
+.menu-item .label { -fx-text-fill: -djrs-text; }
+.tooltip { -fx-background-color: -djrs-surface-alt; -fx-text-fill: -djrs-text; -fx-background-radius: 4; -fx-font-size: 11px; }
+
+/* ---------- Progress / sliders (slides timeline bar, genre ring) ---------- */
+.progress-bar > .track { -fx-background-color: -djrs-surface-alt; -fx-background-radius: 3; }
+.progress-bar > .bar   { -fx-background-color: -djrs-accent; -fx-background-radius: 3; -fx-padding: 3; }
+.progress-indicator { -fx-progress-color: -djrs-accent; }
+.slider .track { -fx-background-color: -djrs-surface-alt; }
+.slider .thumb { -fx-background-color: -djrs-primary; }
+
+/* ---------- Scrollbars ---------- */
+.scroll-pane, .scroll-pane > .viewport { -fx-background-color: transparent; }
+.scroll-bar { -fx-background-color: transparent; }
+.scroll-bar .track { -fx-background-color: transparent; -fx-border-color: transparent; }
+.scroll-bar .thumb { -fx-background-color: #3a3a42; -fx-background-radius: 6; }
+.scroll-bar .thumb:hover { -fx-background-color: #55555f; }
+.scroll-bar .increment-button, .scroll-bar .decrement-button,
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow { -fx-padding: 0; -fx-background-color: transparent; }
+
+/* ---------- Rewind slides ("Spotify Wrapped"-style) ---------- */
+.rewind-slide {
+    /* Blurry colored glow blobs on near-black; add Circle nodes with .glow-* for the blobs */
+    -fx-background-color: #070708;
+}
+/* Add `new GaussianBlur(80)` in code for the soft-blob look (CSS can't do blur) */
+.glow-green  { -fx-fill: rgba(118,184,122,0.35); }
+.glow-purple { -fx-fill: rgba(124,122,208,0.30); }
+.glow-yellow { -fx-fill: rgba(239,239,179,0.20); }
+.glow-red    { -fx-fill: rgba(229,72,77,0.25); }
+
+.album-art { -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 16, 0.1, 0, 4); }
+.avatar { -fx-background-radius: 50%; -fx-effect: dropshadow(gaussian, rgba(124,122,208,0.5), 10, 0.2, 0, 0); }
+.status-dot { -fx-background-color: -djrs-warn; -fx-background-radius: 50%; }
+
+/* Rewind progress segments along the top of each slide */
+.segment        { -fx-background-color: rgba(255,255,255,0.25); -fx-pref-height: 3; }
+.segment-active { -fx-background-color: -djrs-text; }
+
+/* ---------- Alerts / validation ---------- */
+.alert-error   { -fx-text-fill: -djrs-danger;  -fx-font-size: 11px; }
+.alert-success { -fx-text-fill: -djrs-accent;  -fx-font-size: 11px; }
