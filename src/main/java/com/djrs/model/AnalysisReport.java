@@ -7,8 +7,8 @@ public class AnalysisReport {
     // Insights for the actual rewind presentation
     private int totalPlays;
     private ArrayList<Song> topSongs;
-    private ArrayList<Artist> topArtists;
-    private ArrayList<Genre> topGenres;
+    private ArrayList<String> topArtists;
+    private ArrayList<String> topGenres;
 
 
     public int calculateTotalPlays(ArrayList<Song> songs) {
@@ -21,12 +21,12 @@ public class AnalysisReport {
         return topSongs;
     }
 
-    public ArrayList<Artist> getTopArtists() {
+    public ArrayList<String> getTopArtists() {
         // TODO: Return an arraylist of the top artists sorted from highest to lowest plays
         return topArtists;
     }
 
-   public ArrayList<Genre> getTopGenres() {
+   public ArrayList<String> getTopGenres() {
         // TODO: Return an arraylist of the top genres sorted from highest to lowest plays
        return topGenres;
    }

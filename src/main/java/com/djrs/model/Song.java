@@ -1,5 +1,6 @@
 package com.djrs.model;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -7,23 +8,23 @@ public class Song {
     // Has info on the song like title, artist, album, genre
     private String songID;
     private String title;
-    private ArtistManager artists;
+    private ArrayList<String> artists;
     private Album album;
-    private GenreManager genres;
+    private ArrayList<String> genres;
     private int plays;
     private LocalDate dateListened;
 
     public Song() {
         songID = "";
         title = "";
-        artists = new ArtistManager();
+        artists = new ArrayList<>();
         album = new Album();
-        genres = new GenreManager();
+        genres = new ArrayList<>();
         plays = 0;
         dateListened = LocalDate.now();
     }
 
-    public Song(String songID, String title, ArtistManager artists, Album album, GenreManager genres) {
+    public Song(String songID, String title, ArrayList<String> artists, Album album, ArrayList<String> genres) {
         this.songID = songID;
         this.title = title;
         this.artists = artists;
@@ -33,7 +34,7 @@ public class Song {
         dateListened = LocalDate.now();
     }
 
-    public Song(String songID, String title, ArtistManager artists, Album album, GenreManager genres, int plays,
+    public Song(String songID, String title, ArrayList<String> artists, Album album, ArrayList<String> genres, int plays,
             LocalDate dateListened) {
         this.songID = songID;
         this.title = title;
@@ -60,12 +61,12 @@ public class Song {
         this.title = title;
     }
 
-    public ArrayList<Artist> getArtists() {
-        return artists.getArtists();
+    public ArrayList<String> getArtists() {
+        return artists;
     }
 
-    public void setArtists(ArrayList<Artist> artists) {
-        this.artists.setArtists(artists);
+    public void setArtists(ArrayList<String> artists) {
+        this.artists = artists;
     }
 
     public Album getAlbum() {
@@ -76,12 +77,12 @@ public class Song {
         this.album = album;
     }
 
-    public ArrayList<Genre> getGenres() {
-        return genres.getGenres();
+    public ArrayList<String> getGenres() {
+        return genres;
     }
 
-    public void setGenres(ArrayList<Genre> genres) {
-        this.genres.setGenres(genres);
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
     }
 
     public int getPlays() {
@@ -100,11 +101,11 @@ public class Song {
         this.dateListened = dateListened;
     }
 
-    public Artist findArtist(String artistName) {
-        Artist artist = artists.findArtist(artistName);
-
-        if (artist != null)
-            return artist;
+    public String findArtist(String artistName) {
+        for (String artist : artists) {
+            if (artist.equals(artistName))
+                return artist;
+        }
 
         return null;
     }

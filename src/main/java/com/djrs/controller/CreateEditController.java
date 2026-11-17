@@ -92,9 +92,9 @@ public class CreateEditController {
     private void printRecordLine(Song song) {
         // Format data
         String title = song.getTitle();
-        String artist = (!song.getArtists().isEmpty()) ? song.getArtists().get(0).getName() : " - ";
+        String artist = (!song.getArtists().isEmpty()) ? song.getArtists().get(0) : " - ";
         String album  = song.getAlbum() != null ? song.getAlbum().getName() : " - ";
-        String genre  = (!song.getGenres().isEmpty()) ? song.getGenres().get(0).getName()
+        String genre  = (!song.getGenres().isEmpty()) ? song.getGenres().get(0)
                 : " - ";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dateListened = (song.getDateListened() != null) ? song.getDateListened().format(formatter) : " - ";
@@ -227,12 +227,8 @@ public class CreateEditController {
         return items;
     }
 
-    private ArrayList<Artist> readSongArtists() {
-        return readItems(Artist::new, "-1");
-    }
-
-    private ArrayList<Genre> readSongGenres() {
-        return readItems(Genre::new, "-1");
+    private ArrayList<String> readStringList() {
+        return readItems(String::new, "-1");
     }
 
     private String readSongDateListened() {
@@ -262,13 +258,13 @@ public class CreateEditController {
         title = InputValidator.readString();
 
         System.out.println("Enter the new song artist(s) (type -1 to finish): ");
-        ArrayList<Artist> artists = readSongArtists();
+        ArrayList<String> artists = readStringList();
 
         System.out.println("Enter the new song album: ");
         album = InputValidator.readString();
 
         System.out.println("Enter the new song genre(s) (type -1 to finish): ");
-        ArrayList<Genre> genres = readSongGenres();
+        ArrayList<String> genres = readStringList();
 
         System.out.println("Enter the new total plays: ");
         totalPlays = InputValidator.readIntNumber("Invalid input. Please enter a number.");
@@ -278,8 +274,8 @@ public class CreateEditController {
 
         // Return song object
         return new Song((song != null) ? song.getSongID() : "-1", title,
-                new ArtistManager(artists), new Album(album),
-                new GenreManager(genres), totalPlays,
+                new ArrayList<>(artists), new Album(album),
+                new ArrayList<>(genres), totalPlays,
                 LocalDate.parse(dateListened));
     }
 }
