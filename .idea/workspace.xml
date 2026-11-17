@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Everything is implemented except for the delete and rewind functions in DashboardController. I just need the json stuff for it to work.">
+    <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Added data to musicData.json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/musicData.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/musicData.json" afterDir="false" />
     </list>
@@ -205,6 +205,7 @@
     <MESSAGE value="Update and fix .gitignore" />
     <MESSAGE value="Added to dashboardCli and it's controller. Still working on the switch and further controller methods." />
     <MESSAGE value="Everything is implemented except for the delete and rewind functions in DashboardController. I just need the json stuff for it to work." />
-    <option name="LAST_COMMIT_MESSAGE" value="Everything is implemented except for the delete and rewind functions in DashboardController. I just need the json stuff for it to work." />
+    <MESSAGE value="Added data to musicData.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added data to musicData.json" />
   </component>
 </project>
