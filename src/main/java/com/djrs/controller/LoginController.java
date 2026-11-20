@@ -4,10 +4,23 @@ import com.djrs.io.InputValidator;
 import com.djrs.model.User;
 import com.djrs.model.UserSession;
 import com.djrs.model.UsersData;
+import com.djrs.view.gui.Navigator;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class LoginController {
     UserSession currentSession;
     UsersData users;
+
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Label errorLabel;
+
+    public LoginController() {
+        this(UserSession.getInstance());
+    }
 
     public LoginController(UserSession currentSession) {
         this.currentSession = currentSession;
@@ -86,5 +99,23 @@ public class LoginController {
             System.err.println("[SECURITY]: Validation Failed: Provided password is invalid.");
         }
         return match; // Mock check for now.
+    }
+
+    @FXML
+    private void onSignIn() {
+        String username = usernameField.getText() == null ? "" : usernameField.getText().trim();
+        String password = passwordField.getText() == null ? "" : passwordField.getText();
+
+        if (attemptLogin(username, password)) {
+            Navigator.show(Navigator.DASHBOARD);
+        } else {
+            errorLabel.setText("Invalid username or password.");
+            passwordField.clear();
+        }
+    }
+
+    @FXML
+    private void onSpotify() {
+        errorLabel.setText("Spotify sign-in coming soon.");
     }
 }

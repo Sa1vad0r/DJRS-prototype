@@ -1,5 +1,8 @@
 package com.djrs.controller;
 
+import com.djrs.model.UserSession;
+import com.djrs.model.User;
+import com.djrs.view.gui.Navigator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -55,6 +58,7 @@ public class MainViewController {
 
     @FXML
     private void onSignOut() {
-        System.out.println("[GUI] Sign out clicked");   // TODO: clear UserSession, show login view
+        UserSession.getInstance().setCurrentUser(new User());
+        Navigator.show(Navigator.LOGIN);
     }
 }
