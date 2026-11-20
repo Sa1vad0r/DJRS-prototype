@@ -21,7 +21,7 @@ import java.net.URL;
  */
 public class MainApplication extends Application {
 
-    private static final String MAIN_SCENE_FXML = "/DRJS-prototype/layouts/main-scene.fxml";
+    private static final String MAIN_SCENE_FXML = "/DRJS-prototype/layouts/rewind.fxml";
     private static final String THEME_CSS = "/DRJS-prototype/style/theme.css";
 
     @Override

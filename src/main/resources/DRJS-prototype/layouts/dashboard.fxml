@@ -54,33 +54,30 @@
          <!-- Grid of rewind cards. FlowPane wraps to the next row when it runs out of width,
               so later you can just add more cards inside it. -->
          <FlowPane hgap="16.0" vgap="16.0"><!-- ONE REWIND CARD ("capsule"). Copy this whole VBox to make more. -->
-            <VBox styleClass="card" prefWidth="260.0" spacing="12.0">
-               <children>
+            <VBox styleClass="card" prefWidth="300.0"
+                  spacing="12.0"><!-- Top part: text on the left, album art on the right -->
+               <HBox spacing="12.0">
+                  <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                     <Label text="Spring 2026" styleClass="card-title"/>
+                     <Label text="Jan 15, 2026 – May 12, 2026" styleClass="card-meta"/>
+                     <Label text="1337 songs analyzed" styleClass="card-songs"/>
+                  </VBox>
+                  <!-- Placeholder square. Swap for an ImageView when you have album art. -->
+                  <Rectangle width="56.0" height="56.0" arcWidth="6.0" arcHeight="6.0"
+                             fill="#c0c5c9" styleClass="album-art"/>
+               </HBox>
 
-                  <!-- Top part: text on the left, album art on the right -->
-                  <HBox spacing="12.0">
-                     <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="Spring 2026" styleClass="card-title"/>
-                        <Label text="Jan 15, 2026 – May 12, 2026" styleClass="card-meta"/>
-                        <Label text="1337 songs analyzed" styleClass="card-songs"/>
-                     </VBox>
-                     <!-- Placeholder square. Swap for an ImageView when you have album art. -->
-                     <Rectangle width="56.0" height="56.0" arcWidth="6.0" arcHeight="6.0"
-                                fill="#c0c5c9" styleClass="album-art"/>
-                  </HBox>
+               <Separator/>
 
-                  <Separator/>
+               <!-- Bottom part: View Rewind + Edit on the left, delete on the right -->
+               <HBox spacing="8.0" alignment="CENTER_LEFT">
+                  <Button mnemonicParsing="false" text="View Rewind" styleClass="button button-small"/>
+                  <Button mnemonicParsing="false" text="Edit"
+                          styleClass="button button-small button-secondary"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Button mnemonicParsing="false" text="🗑" styleClass="button button-small button-trash"/>
+               </HBox>
 
-                  <!-- Bottom part: View Rewind + Edit on the left, delete on the right -->
-                  <HBox spacing="8.0" alignment="CENTER_LEFT">
-                     <Button mnemonicParsing="false" text="View Rewind" styleClass="button button-small"/>
-                     <Button mnemonicParsing="false" text="Edit"
-                             styleClass="button button-small button-secondary"/>
-                     <Region HBox.hgrow="ALWAYS"/>
-                     <Button mnemonicParsing="false" text="🗑" styleClass="button button-small button-trash"/>
-                  </HBox>
-
-               </children>
             </VBox>
 
          </FlowPane>
