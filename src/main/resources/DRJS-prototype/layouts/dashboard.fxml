@@ -20,22 +20,18 @@
    <!-- ===================== TOP: nav bar ===================== -->
    <top>
       <HBox alignment="CENTER_LEFT" styleClass="nav-bar" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="DJRS Rewind" styleClass="app-logo"/>
+         <Label text="DJRS Rewind" styleClass="app-logo"/>
 
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" text="Library" styleClass="nav-link"/>
-                  <Button mnemonicParsing="false" text="Create" styleClass="nav-link"/>
-                  <Button mnemonicParsing="false" text="Story/View" styleClass="nav-link"/>
-               </children>
-            </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Button mnemonicParsing="false" text="Library" styleClass="nav-link"/>
+            <Button mnemonicParsing="false" text="Create" styleClass="nav-link"/>
+            <Button mnemonicParsing="false" text="Story/View" styleClass="nav-link"/>
+         </HBox>
 
-            <Region HBox.hgrow="ALWAYS"/>
+         <Region HBox.hgrow="ALWAYS"/>
 
-            <TextField promptText="Search" prefWidth="200.0"/>
-            <Circle fill="#c0c5c9" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"/>
-         </children>
+         <TextField promptText="Search" prefWidth="200.0"/>
+         <Circle fill="#c0c5c9" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"/>
       </HBox>
    </top>
 
@@ -44,67 +40,51 @@
       <VBox spacing="24.0">
          <padding>
             <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
-         </padding>
-         <children>
+         </padding><!-- Header row: title on the left, button on the right -->
+         <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <VBox spacing="4.0">
+               <Label text="Your Rewinds" styleClass="title"/>
+               <Label text="Dive into your musical history and discover new trends in genre, artists, and favorite songs you might have forgotten."
+                      styleClass="subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button mnemonicParsing="false" text="Create New Rewind" styleClass="button button-accent"/>
+         </HBox>
 
-            <!-- Header row: title on the left, button on the right -->
-            <HBox alignment="CENTER_LEFT" spacing="12.0">
-               <children>
-                  <VBox spacing="4.0">
-                     <children>
-                        <Label text="Your Rewinds" styleClass="title"/>
-                        <Label text="Dive into your musical history and discover new trends in genre, artists, and favorite songs you might have forgotten." styleClass="subtitle"/>
-                     </children>
-                  </VBox>
-                  <Region HBox.hgrow="ALWAYS"/>
-                  <Button mnemonicParsing="false" text="Create New Rewind" styleClass="button button-accent"/>
-               </children>
-            </HBox>
-
-            <!-- Grid of rewind cards. FlowPane wraps to the next row when it runs out of width,
-                 so later you can just add more cards inside it. -->
-            <FlowPane hgap="16.0" vgap="16.0">
+         <!-- Grid of rewind cards. FlowPane wraps to the next row when it runs out of width,
+              so later you can just add more cards inside it. -->
+         <FlowPane hgap="16.0" vgap="16.0"><!-- ONE REWIND CARD ("capsule"). Copy this whole VBox to make more. -->
+            <VBox styleClass="card" prefWidth="260.0" spacing="12.0">
                <children>
 
-                  <!-- ONE REWIND CARD ("capsule"). Copy this whole VBox to make more. -->
-                  <VBox styleClass="card" prefWidth="260.0" spacing="12.0">
-                     <children>
+                  <!-- Top part: text on the left, album art on the right -->
+                  <HBox spacing="12.0">
+                     <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="Spring 2026" styleClass="card-title"/>
+                        <Label text="Jan 15, 2026 – May 12, 2026" styleClass="card-meta"/>
+                        <Label text="1337 songs analyzed" styleClass="card-songs"/>
+                     </VBox>
+                     <!-- Placeholder square. Swap for an ImageView when you have album art. -->
+                     <Rectangle width="56.0" height="56.0" arcWidth="6.0" arcHeight="6.0"
+                                fill="#c0c5c9" styleClass="album-art"/>
+                  </HBox>
 
-                        <!-- Top part: text on the left, album art on the right -->
-                        <HBox spacing="12.0" alignment="TOP_LEFT">
-                           <children>
-                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="Spring 2026" styleClass="card-title"/>
-                                    <Label text="Jan 15, 2026 – May 12, 2026" styleClass="card-meta"/>
-                                    <Label text="1337 songs analyzed" styleClass="card-songs"/>
-                                 </children>
-                              </VBox>
-                              <!-- Placeholder square. Swap for an ImageView when you have album art. -->
-                              <Rectangle width="56.0" height="56.0" arcWidth="6.0" arcHeight="6.0"
-                                         fill="#c0c5c9" styleClass="album-art"/>
-                           </children>
-                        </HBox>
+                  <Separator/>
 
-                        <Separator/>
-
-                        <!-- Bottom part: View Rewind + Edit on the left, delete on the right -->
-                        <HBox spacing="8.0" alignment="CENTER_LEFT">
-                           <children>
-                              <Button mnemonicParsing="false" text="View Rewind" styleClass="button button-small"/>
-                              <Button mnemonicParsing="false" text="Edit" styleClass="button button-small button-secondary"/>
-                              <Region HBox.hgrow="ALWAYS"/>
-                              <Button mnemonicParsing="false" text="🗑" styleClass="button button-small button-trash"/>
-                           </children>
-                        </HBox>
-
-                     </children>
-                  </VBox>
+                  <!-- Bottom part: View Rewind + Edit on the left, delete on the right -->
+                  <HBox spacing="8.0" alignment="CENTER_LEFT">
+                     <Button mnemonicParsing="false" text="View Rewind" styleClass="button button-small"/>
+                     <Button mnemonicParsing="false" text="Edit"
+                             styleClass="button button-small button-secondary"/>
+                     <Region HBox.hgrow="ALWAYS"/>
+                     <Button mnemonicParsing="false" text="🗑" styleClass="button button-small button-trash"/>
+                  </HBox>
 
                </children>
-            </FlowPane>
+            </VBox>
 
-         </children>
+         </FlowPane>
+
       </VBox>
    </center>
 </BorderPane>
