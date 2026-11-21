@@ -1,6 +1,7 @@
 
 package com.djrs.controller;
 
+import com.djrs.view.gui.Navigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -58,7 +59,7 @@ public class ViewRewindController {
 
     @FXML
     private void onClose() {
-        goToLibrary();
+        Navigator.show(Navigator.DASHBOARD);
     }
 
     private int lastIndex() {
@@ -88,12 +89,13 @@ public class ViewRewindController {
 
     /** Swaps the screen in the current Scene (the stylesheet stays attached). */
     private void goToLibrary() {
-        try {
-            var root = new FXMLLoader(getClass().getResource(LIBRARY_FXML)).load();
-            nextButton.getScene().setRoot((javafx.scene.Parent) root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Navigator.show(Navigator.DASHBOARD);
+//        try {
+//            var root = new FXMLLoader(getClass().getResource(LIBRARY_FXML)).load();
+//            nextButton.getScene().setRoot((javafx.scene.Parent) root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
  

@@ -11,9 +11,7 @@ public class Navigator {
     public static final String CREATE_USER = "/DRJS-prototype/layouts/sign-up.fxml";
     public static final String CREATE_REWIND = "/DRJS-prototype/layouts/create-edit-rewind.fxml";
     public static final String LOGIN = "/DRJS-prototype/layouts/login-view.fxml";
-//    // dashboard needs to reworked so it follows  paths
-//    public static final String DASHBOARD = "/DRJS-prototype/layouts/dashboard.fxml";
-    public static final String DASHBOARD = "/DRJS-prototype/layouts/main-scene.fxml";
+    public static final String DASHBOARD = "/DRJS-prototype/layouts/dashboard.fxml";
     public static final String VIEW_REWIND = "/DRJS-prototype/layouts/rewind.fxml";
 
     private static Scene scene;

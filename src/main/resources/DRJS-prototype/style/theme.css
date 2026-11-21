@@ -259,3 +259,12 @@
 /* ---------- Alerts / validation ---------- */
 .alert-error   { -fx-text-fill: -djrs-danger;  -fx-font-size: 11px; }
 .alert-success { -fx-text-fill: -djrs-accent;  -fx-font-size: 11px; }
+
+.card-title   { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
+.card-meta    { -fx-text-fill: -djrs-text-muted; }
+.card-songs   { -fx-text-fill: -djrs-text; -fx-font-size: 12px; }
+.button-small { -fx-padding: 4 12 4 12; -fx-font-size: 12px; }
+.button-secondary       { -fx-background-color: rgba(255,255,255,0.12); -fx-text-fill: -djrs-text; }
+.button-secondary:hover { -fx-background-color: rgba(255,255,255,0.2); }
+.button-trash       { -fx-background-color: transparent; -fx-text-fill: -djrs-danger; }
+.button-trash:hover { -fx-background-color: rgba(255,255,255,0.12); }

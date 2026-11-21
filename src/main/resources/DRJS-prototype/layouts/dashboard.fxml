@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -11,36 +11,36 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 
-<!-- Styling comes from /DRJS-prototype/style/theme.css (added to the Scene in MainApplication) -->
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.djrs.controller.MainViewController"
             prefWidth="1000.0" prefHeight="680.0">
 
-   <!-- ===================== TOP: nav bar ===================== -->
    <top>
-      <HBox alignment="CENTER_LEFT" styleClass="nav-bar" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="nav-bar" BorderPane.alignment="CENTER">
          <Label text="DJRS Rewind" styleClass="app-logo"/>
 
          <HBox alignment="CENTER_LEFT" spacing="10.0">
-            <Button mnemonicParsing="false" text="Library" styleClass="nav-link"/>
-            <Button mnemonicParsing="false" text="Create" styleClass="nav-link"/>
-            <Button mnemonicParsing="false" text="Story/View" styleClass="nav-link"/>
+            <Button mnemonicParsing="false" text="Library" styleClass="nav-link" onAction="#onLibrary"/>
+            <Button mnemonicParsing="false" text="Create" styleClass="nav-link" onAction="#onAddRewind"/>
+            <Button mnemonicParsing="false" text="Story/View" styleClass="nav-link" onAction="#onView"/>
          </HBox>
 
          <Region HBox.hgrow="ALWAYS"/>
 
          <TextField promptText="Search" prefWidth="200.0"/>
          <Circle fill="#c0c5c9" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"/>
+         <Button fx:id="signOutButton" mnemonicParsing="false" text="Sign out" styleClass="button-ghost"
+                 onAction="#onSignOut"/>
       </HBox>
    </top>
 
-   <!-- ===================== CENTER: page content ===================== -->
    <center>
       <VBox spacing="24.0">
          <padding>
             <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
-         </padding><!-- Header row: title on the left, button on the right -->
+         </padding>
+
          <HBox alignment="CENTER_LEFT" spacing="12.0">
             <VBox spacing="4.0">
                <Label text="Your Rewinds" styleClass="title"/>
@@ -48,40 +48,13 @@
                       styleClass="subtitle"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button mnemonicParsing="false" text="Create New Rewind" styleClass="button button-accent"/>
+            <Button fx:id="addRewindButton" mnemonicParsing="false" text="Create New Rewind"
+                    styleClass="button button-accent" onAction="#onAddRewind"/>
          </HBox>
 
-         <!-- Grid of rewind cards. FlowPane wraps to the next row when it runs out of width,
-              so later you can just add more cards inside it. -->
-         <FlowPane hgap="16.0" vgap="16.0"><!-- ONE REWIND CARD ("capsule"). Copy this whole VBox to make more. -->
-            <VBox styleClass="card" prefWidth="300.0"
-                  spacing="12.0"><!-- Top part: text on the left, album art on the right -->
-               <HBox spacing="12.0">
-                  <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                     <Label text="Spring 2026" styleClass="card-title"/>
-                     <Label text="Jan 15, 2026 – May 12, 2026" styleClass="card-meta"/>
-                     <Label text="1337 songs analyzed" styleClass="card-songs"/>
-                  </VBox>
-                  <!-- Placeholder square. Swap for an ImageView when you have album art. -->
-                  <Rectangle width="56.0" height="56.0" arcWidth="6.0" arcHeight="6.0"
-                             fill="#c0c5c9" styleClass="album-art"/>
-               </HBox>
-
-               <Separator/>
-
-               <!-- Bottom part: View Rewind + Edit on the left, delete on the right -->
-               <HBox spacing="8.0" alignment="CENTER_LEFT">
-                  <Button mnemonicParsing="false" text="View Rewind" styleClass="button button-small"/>
-                  <Button mnemonicParsing="false" text="Edit"
-                          styleClass="button button-small button-secondary"/>
-                  <Region HBox.hgrow="ALWAYS"/>
-                  <Button mnemonicParsing="false" text="🗑" styleClass="button button-small button-trash"/>
-               </HBox>
-
-            </VBox>
-
-         </FlowPane>
-
+         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+            <FlowPane fx:id="rewindCards" hgap="16.0" vgap="16.0"/>
+         </ScrollPane>
       </VBox>
    </center>
 </BorderPane>
