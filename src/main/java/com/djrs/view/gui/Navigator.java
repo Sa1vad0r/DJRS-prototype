@@ -9,6 +9,7 @@ import java.net.URL;
 
 public class Navigator {
     public static final String CREATE_USER = "/DRJS-prototype/layouts/sign-up.fxml";
+    public static final String CREATE_REWIND = "/DRJS-prototype/layouts/create-edit-rewind.fxml";
     public static final String LOGIN = "/DRJS-prototype/layouts/login-view.fxml";
     public static final String DASHBOARD = "/DRJS-prototype/layouts/main-scene.fxml";
 

@@ -2,6 +2,23 @@ package com.djrs.controller;
 
 import com.djrs.io.InputValidator;
 import com.djrs.model.*;
+import com.djrs.view.gui.Navigator;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.layout.GridPane;
+import java.net.URL;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,23 +36,199 @@ public class CreateEditController {
     private Rewind currentRewind;
     private PageState pageState;
 
+    @FXML private Label pageTitleLabel;
+    @FXML private TextField titleField;
+    @FXML private DatePicker startPicker;
+    @FXML private DatePicker endPicker;
+    @FXML private Label errorLabel;
+    @FXML private Label tracksLabel;
+    @FXML private TableView<Song> tracksTable;
+    @FXML private TableColumn<Song, String> titleColumn;
+    @FXML private TableColumn<Song, String> artistColumn;
+    @FXML private TableColumn<Song, String> albumColumn;
+    @FXML private TableColumn<Song, String> genreColumn;
+    @FXML private TableColumn<Song, String> dateColumn;
+    @FXML private TableColumn<Song, String> playsColumn;
+
+    public CreateEditController() {
+        this(PageState.CREATE);
+    }
+
     public CreateEditController(PageState pageState) {
         this.currentSession = UserSession.getInstance();
         this.pageState = pageState;
     }
 
     public void initialize() {
-        // --- Setup tasks go here ---
 
-        // Load system configuration data:
         System.out.println("[Controller]: Loading system configuration data...");
 
-        // Load user data:
         if (pageState == PageState.EDIT) {
-            // currentSession.load;
         } else {
             currentRewind = new Rewind();
         }
+
+        if (tracksTable != null) {
+            setupGui();
+        }
+    }
+
+    private void setupGui() {
+        pageTitleLabel.setText(pageState == PageState.EDIT ? "Edit Rewind" : "Create Rewind");
+
+        titleColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getTitle()));
+        artistColumn.setCellValueFactory(d -> new SimpleStringProperty(String.join(", ", d.getValue().getArtists())));
+        albumColumn.setCellValueFactory(d -> new SimpleStringProperty(
+                d.getValue().getAlbum() != null ? d.getValue().getAlbum().getName() : "-"));
+        genreColumn.setCellValueFactory(d -> new SimpleStringProperty(String.join(", ", d.getValue().getGenres())));
+        dateColumn.setCellValueFactory(d -> new SimpleStringProperty(
+                d.getValue().getDateListened() != null ? d.getValue().getDateListened().toString() : "-"));
+        playsColumn.setCellValueFactory(d -> new SimpleStringProperty(String.valueOf(d.getValue().getPlays())));
+
+        tracksTable.setPlaceholder(new Label("No songs yet."));
+        refreshTracks();
+    }
+
+    private void refreshTracks() {
+        tracksTable.setItems(FXCollections.observableArrayList(currentRewind.getSongs()));
+        tracksLabel.setText("Tracks (" + currentRewind.getSongs().size() + ")");
+    }
+
+    private ArrayList<String> splitList(String text) {
+        ArrayList<String> items = new ArrayList<>();
+        if (text == null) return items;
+        for (String part : text.split(",")) {
+            String trimmed = part.trim();
+            if (!trimmed.isEmpty()) items.add(trimmed);
+        }
+        return items;
+    }
+
+    @FXML
+    private void onAddSong() {
+        if (startPicker.getValue() == null || endPicker.getValue() == null) {
+            errorLabel.setText("Pick the start and end dates before adding songs.");
+            return;
+        }
+
+        DateRange range;
+        try {
+            range = new DateRange(startPicker.getValue().atStartOfDay(), endPicker.getValue().atStartOfDay());
+        } catch (IllegalArgumentException e) {
+            errorLabel.setText("End date must not be before the start date.");
+            return;
+        }
+        errorLabel.setText("");
+        currentRewind.setDateRange(range);
+
+        Dialog<Song> dialog = new Dialog<>();
+        dialog.setTitle("Manually Add Song");
+        ButtonType addType = new ButtonType("Add Song", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addType, ButtonType.CANCEL);
+
+        URL css = getClass().getResource("/DRJS-prototype/style/theme.css");
+        if (css != null) {
+            dialog.getDialogPane().getStylesheets().add(css.toExternalForm());
+        }
+
+        TextField songTitle = new TextField();
+        TextField artists = new TextField();
+        artists.setPromptText("Separate with commas");
+        TextField album = new TextField();
+        TextField genres = new TextField();
+        genres.setPromptText("Separate with commas");
+        DatePicker listened = new DatePicker(startPicker.getValue());
+        TextField plays = new TextField("1");
+        Label dialogError = new Label();
+        dialogError.getStyleClass().add("text-danger");
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(16));
+        grid.addRow(0, new Label("Title"), songTitle);
+        grid.addRow(1, new Label("Artist(s)"), artists);
+        grid.addRow(2, new Label("Album"), album);
+        grid.addRow(3, new Label("Genre(s)"), genres);
+        grid.addRow(4, new Label("Date listened"), listened);
+        grid.addRow(5, new Label("Play count"), plays);
+        grid.add(dialogError, 0, 6, 2, 1);
+        dialog.getDialogPane().setContent(grid);
+
+        Button addButton = (Button) dialog.getDialogPane().lookupButton(addType);
+        addButton.addEventFilter(ActionEvent.ACTION, event -> {
+            String error = null;
+            int playCount = -1;
+            try {
+                playCount = Integer.parseInt(plays.getText().trim());
+            } catch (NumberFormatException ignored) {
+            }
+
+            if (songTitle.getText().trim().isEmpty()) {
+                error = "Title is required.";
+            } else if (splitList(artists.getText()).isEmpty()) {
+                error = "At least one artist is required.";
+            } else if (listened.getValue() == null) {
+                error = "Pick the date listened.";
+            } else if (!range.isInRange(listened.getValue().atStartOfDay())) {
+                error = "Date must be within the rewind's date range.";
+            } else if (playCount < 0) {
+                error = "Play count must be a whole number.";
+            }
+
+            if (error != null) {
+                dialogError.setText(error);
+                event.consume();
+            }
+        });
+
+        dialog.setResultConverter(button -> {
+            if (button != addType) return null;
+            return new Song("-1", songTitle.getText().trim(), splitList(artists.getText()),
+                    new Album(album.getText().trim()), splitList(genres.getText()),
+                    Integer.parseInt(plays.getText().trim()), listened.getValue());
+        });
+
+        dialog.showAndWait().ifPresent(song -> {
+            currentRewind.addSong(song);
+            refreshTracks();
+        });
+    }
+
+    @FXML
+    private void onCancel() {
+        Navigator.show(Navigator.DASHBOARD);
+    }
+
+    @FXML
+    private void onSave() {
+        String title = titleField.getText() == null ? "" : titleField.getText().trim();
+        if (title.isEmpty()) {
+            errorLabel.setText("Please enter a rewind title.");
+            return;
+        }
+        if (startPicker.getValue() == null || endPicker.getValue() == null) {
+            errorLabel.setText("Please pick a start and end date.");
+            return;
+        }
+
+        DateRange range;
+        try {
+            range = new DateRange(startPicker.getValue().atStartOfDay(), endPicker.getValue().atStartOfDay());
+        } catch (IllegalArgumentException e) {
+            errorLabel.setText("End date must not be before the start date.");
+            return;
+        }
+
+        currentRewind.setTitle(title);
+        currentRewind.setDateRange(range);
+
+        if (pageState == PageState.CREATE) {
+            currentRewind.setRewindId(String.valueOf(currentSession.getUserRewinds().size() + 1));
+            currentSession.addRewind(currentRewind);
+        }
+
+        Navigator.show(Navigator.DASHBOARD);
     }
 
     public void showBasicRewindInfo() {
@@ -49,11 +242,9 @@ public class CreateEditController {
     }
 
     public void showTracks(ArrayList<Song> tracks) {
-        // If tracks is empty/null, default to all songs in the current rewind
         if (tracks == null || tracks.isEmpty()) {
             tracks = currentRewind.getSongs();
 
-            // If the current rewind does not have any songs, notify user and return
             if (tracks == null || tracks.isEmpty()) {
                 System.out.println("No songs found. Add songs first.");
                 return;
@@ -61,9 +252,6 @@ public class CreateEditController {
         }
 
         System.out.println("Tracks (" + tracks.size() + ")");
-        // -----------------------------------------------------------------------
-        // 1️⃣ Print a header that explains what we are going to display
-        // -----------------------------------------------------------------------
         System.out.printf("%s\n", "____________________________________________________________________________________________________________________________________________________________________________________");
         System.out.printf("| %-10s", "#");
         System.out.printf("| %-30s", "Title");
@@ -74,12 +262,8 @@ public class CreateEditController {
         System.out.printf("| %-25s\n", "Play Count");
         System.out.printf("%s\n", "____________________________________________________________________________________________________________________________________________________________________________________");
 
-        // -----------------------------------------------------------------------
-        // 2️⃣ Print each song on its own row
-        // -----------------------------------------------------------------------
         int i = 1;
         for (Song song : tracks) {
-            // Using printf lets us keep the columns nicely aligned
             System.out.printf("| %-10s", i);
             printRecordLine(song);
             System.out.println();
@@ -90,7 +274,6 @@ public class CreateEditController {
     }
 
     private void printRecordLine(Song song) {
-        // Format data
         String title = song.getTitle();
         String artist = (!song.getArtists().isEmpty()) ? song.getArtists().get(0) : " - ";
         String album  = song.getAlbum() != null ? song.getAlbum().getName() : " - ";
@@ -173,7 +356,6 @@ public class CreateEditController {
             int choice;
             String errorString = String.format("Invalid input. Please enter a number between %d to %d.", 1, songCount);
 
-            // Show results
             showTracks(foundSongs);
             System.out.println("Enter the number of the song (inside []): ");
             choice = InputValidator.readIntNumberBetween(1, songCount, errorString);
@@ -204,7 +386,7 @@ public class CreateEditController {
     public void addEditSongInfo(Song song) {
        Song updatedSong = readSongInfo(song);
 
-        if (song == null) { // Song is null = adding new song
+        if (song == null) {
             currentRewind.addSong(updatedSong);
         } else {
             if (currentRewind.updateSong(updatedSong)) {
@@ -249,7 +431,6 @@ public class CreateEditController {
     }
 
     private Song readSongInfo(Song song) {
-        // Song info
         String title;
         String album;
         int totalPlays;
@@ -272,7 +453,6 @@ public class CreateEditController {
         String dateListened = readSongDateListened();
 
 
-        // Return song object
         return new Song((song != null) ? song.getSongID() : "-1", title,
                 new ArrayList<>(artists), new Album(album),
                 new ArrayList<>(genres), totalPlays,

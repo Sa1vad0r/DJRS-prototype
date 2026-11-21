@@ -3,8 +3,8 @@
     "id": "1",
     "firstName": "Aisha",
     "lastName": "Khan",
-    "username": "akhan92",
-    "passwordHash": "P@ssw0rd$"
+    "username": "user",
+    "passwordHash": "pass"
   },
   {
     "id": "2",
