@@ -49,7 +49,7 @@ public class MainViewController {
 
     @FXML
     private void onView() {
-        System.out.println("[GUI] View: " + rewindTable.getSelectionModel().getSelectedItem()[0]);
+        Navigator.show(Navigator.VIEW_REWIND);
     }
 
     @FXML
