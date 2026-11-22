@@ -30,7 +30,7 @@
 
                 <TextField prefWidth="200.0" promptText="Search" />
                 <Circle fx:id="littleProfileCircle" fill="#ffe95c" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar" />
-            <Button mnemonicParsing="false" onAction="#onBack" styleClass="button-secondary" text="Back to Dashboard" />
+            <Button mnemonicParsing="false" onAction="#onBack" styleClass="button-ghost" text="Back to Dashboard" />
             </children>
         </HBox>
     </top>

@@ -69,6 +69,19 @@ public class MainViewController {
         }
     }
 
+    private ImageView loadButtonIcon(String fileName) {
+        URL url = getClass().getResource("/DRJS-prototype/images/" + fileName);
+        if (url == null) {
+            System.out.println("Missing icon: " + fileName);
+            return null;
+        }
+        ImageView view = new ImageView(new Image(url.toExternalForm()));
+        view.setFitWidth(16);
+        view.setFitHeight(16);
+        view.setPreserveRatio(true);
+        return view;
+    }
+
     private VBox buildCard(String title, String range, String songCount, Runnable onRemove) {
         Label titleLabel = new Label(title);
         titleLabel.getStyleClass().add("card-title");
@@ -89,12 +102,14 @@ public class MainViewController {
         HBox top = new HBox(12, text, art);
 
         Button viewButton = new Button("View Rewind");
+        viewButton.setGraphic(loadButtonIcon("view.png"));
         viewButton.getStyleClass().add("button-small");
         viewButton.setOnAction(e -> onView());
 
         Button editButton = new Button("Edit");
+        editButton.setGraphic(loadButtonIcon("edit.png"));
         editButton.getStyleClass().addAll("button-small", "button-secondary");
-        editButton.setDisable(true);
+        editButton.setOnAction(e -> onEditRewind());
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -136,10 +151,12 @@ public class MainViewController {
         HBox top = new HBox(12, text, art);
 
         Button viewButton = new Button("View Rewind");
+        viewButton.setGraphic(loadButtonIcon("view.png"));
         viewButton.getStyleClass().add("button-small");
         viewButton.setOnAction(e -> onView());
 
         Button editButton = new Button("Edit");
+        editButton.setGraphic(loadButtonIcon("edit.png"));
         editButton.getStyleClass().addAll("button-small", "button-secondary");
         editButton.setOnAction(e -> onEditRewind());
 
@@ -161,9 +178,6 @@ public class MainViewController {
 
     private void confirmDelete(String title, Runnable onRemove) {
         Alert confirm = new Alert(Alert.AlertType.ERROR);
-        // confirm.setTitle("Delete Rewind");
-        // confirm.setHeaderText("Delete \"" + title + "\"?");
-        // confirm.setContentText("This can't be undone.");
         confirm.setGraphic(new ImageView(new Image(getClass().getResource("/DRJS-prototype/images/delete-warning.png").toExternalForm())));
 
         // Setting up labels and buttons
@@ -183,7 +197,7 @@ public class MainViewController {
         confirm.getButtonTypes().setAll(delete, ButtonType.CANCEL);
 
         Button cancel = (Button) confirm.getDialogPane().lookupButton(ButtonType.CANCEL);
-        cancel.getStyleClass().add("button-ghost");
+        cancel.getStyleClass().add("button-secondary");
         Button deleteButton = (Button) confirm.getDialogPane().lookupButton(delete);
         deleteButton.getStyleClass().add("button-danger");
 

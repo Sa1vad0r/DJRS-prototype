@@ -6,12 +6,12 @@ import com.djrs.model.UsersData;
 import com.djrs.view.gui.Navigator;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -188,7 +188,7 @@ public class SettingsController {
     @FXML
     private void onDeleteData() {
         hide(dangerError);
-        if (confirm("Delete all of your rewinds? This cannot be undone.")) {
+        if (confirm("Data", "Delete all of your rewinds? This cannot be undone.")) {
             session.getUserRewinds().clear();
             showToast(dataToast);
         }
@@ -197,7 +197,7 @@ public class SettingsController {
     @FXML
     private void onDeleteAccount() {
         hide(dangerError);
-        if (!confirm("Delete your account? This cannot be undone.")) {
+        if (!confirm("Account", "Delete your account? This cannot be undone.")) {
             return;
         }
 
@@ -269,15 +269,54 @@ public class SettingsController {
     }
 
     /** Pops up an OK/Cancel box (themed like the delete-rewind box). True if OK was clicked. */
-    private boolean confirm(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.OK, ButtonType.CANCEL);
-        alert.setHeaderText(null);
+    private boolean confirm(String toDelete, String subtitleText) {
+        Alert confirm = new Alert(Alert.AlertType.ERROR);
+        confirm.setGraphic(new ImageView(new Image(getClass().getResource("/DRJS-prototype/images/delete-warning.png").toExternalForm())));
+
+        // Setting up labels and buttons
+        Label deleteLabel = new Label("Delete " + toDelete + "?");
+        deleteLabel.getStyleClass().add("title");
+        Label subtitle = new Label(subtitleText);
+        subtitle.getStyleClass().add("subtitle");
+
+        VBox headerVBox = new VBox(deleteLabel, subtitle);
+        HBox header = new HBox(10, confirm.getGraphic(), headerVBox);
+        headerVBox.setAlignment(Pos.CENTER_LEFT);
+        header.setAlignment(Pos.CENTER_LEFT);
+        confirm.setGraphic(null);
+        confirm.getDialogPane().setHeader(header);
+
+        ButtonType delete = new ButtonType("Delete", ButtonBar.ButtonData.OK_DONE);
+        confirm.getButtonTypes().setAll(delete, ButtonType.CANCEL);
+
+        Button cancel = (Button) confirm.getDialogPane().lookupButton(ButtonType.CANCEL);
+        cancel.getStyleClass().add("button-secondary");
+        Button deleteButton = (Button) confirm.getDialogPane().lookupButton(delete);
+        deleteButton.getStyleClass().add("button-danger");
+
+        Label first = new Label("Are you sure you want to delete ");
+        Label titleLabel = new Label(toDelete);
+        Label last = new Label("?");
+
+        first.getStyleClass().add("subtitle");
+        titleLabel.getStyleClass().add("subtitle-bold");
+        last.getStyleClass().add("subtitle");
+
+        HBox body = new HBox(0, first, titleLabel, last);
+        body.setAlignment(Pos.CENTER);
+
+        VBox content = new VBox(10, new Separator(), body);
+        content.setAlignment(Pos.CENTER);
+        content.setFillWidth(true);
+        content.setMaxWidth(Double.MAX_VALUE);
+
+        confirm.getDialogPane().setContent(content);
 
         URL css = getClass().getResource("/DRJS-prototype/style/theme.css");
         if (css != null) {
-            alert.getDialogPane().getStylesheets().add(css.toExternalForm());
+            confirm.getDialogPane().getStylesheets().add(css.toExternalForm());
         }
 
-        return alert.showAndWait().filter(b -> b == ButtonType.OK).isPresent();
+        return confirm.showAndWait().filter(b -> b == ButtonType.OK).isPresent();
     }
 }
