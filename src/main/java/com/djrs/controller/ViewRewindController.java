@@ -7,8 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
@@ -25,18 +29,28 @@ public class ViewRewindController {
     @FXML private Button prevButton;
     @FXML private Button nextButton;
     @FXML private PieChart genreChart;
+    @FXML private Circle artistCircle;
+    @FXML private Rectangle songRectangle;
 
     private int index = 0;
 
     /** Runs automatically once, right after the FXML finishes loading. */
     @FXML
     public void initialize() {
+        getStatImages();
         genreChart.getData().addAll(
                 new PieChart.Data("Vocaloid", 80),
                 new PieChart.Data("Hip-Hop", 15),
                 new PieChart.Data("Other", 5)
         );
         show(0);
+    }
+
+    private void getStatImages() {
+        Image songImage = new Image(getClass().getResource("/DRJS-prototype/images/flavor-foley.png").toExternalForm());
+        Image artistImage = new Image(getClass().getResource("/DRJS-prototype/images/jamie-page.png").toExternalForm());
+        songRectangle.setFill(new ImagePattern(songImage));
+        artistCircle.setFill(new ImagePattern(artistImage));
     }
 
     @FXML
@@ -59,7 +73,8 @@ public class ViewRewindController {
 
     @FXML
     private void onClose() {
-        Navigator.show(Navigator.DASHBOARD);
+        System.out.println("Closing rewind...");
+        goToLibrary();
     }
 
     private int lastIndex() {
