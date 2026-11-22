@@ -29,9 +29,9 @@
          <Region HBox.hgrow="ALWAYS"/>
 
          <TextField promptText="Search" prefWidth="200.0"/>
-         <Circle fill="#c0c5c9" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"/>
-         <Button fx:id="signOutButton" mnemonicParsing="false" text="Sign out" styleClass="button-ghost"
-                 onAction="#onSignOut"/>
+         <Circle fx:id="profileCircle" fill="#c0c5c9" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"
+                 onMouseClicked="#onOpenSettings"/>
+         <Button fx:id="signOutButton"/>
       </HBox>
    </top>
 

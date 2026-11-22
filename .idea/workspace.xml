@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Need to double-check with dashboard.fxml. See discord for more">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/rewind.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/ViewRewindController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/ViewRewindController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/UsersData.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/UsersData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
