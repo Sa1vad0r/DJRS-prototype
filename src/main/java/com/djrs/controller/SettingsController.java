@@ -11,6 +11,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -24,6 +27,9 @@ public class SettingsController {
 
     /** Change this to match whatever your create-account screen requires. */
     private static final int MIN_PASSWORD_LENGTH = 4;
+
+    @FXML private Circle bigProfileCircle;
+    @FXML private Circle littleProfileCircle;
 
     @FXML private TextField displayNameField;
     @FXML private TextField usernameField;
@@ -42,6 +48,7 @@ public class SettingsController {
     /** Runs once after the FXML loads: fills the fields from the logged-in user. */
     @FXML
     private void initialize() {
+        getProfilePicture();
         User user = session.getCurrentUser();
 
         displayNameField.setText((nz(user.getFirstName()) + " " + nz(user.getLastName())).trim());
@@ -50,6 +57,19 @@ public class SettingsController {
         hide(profileError);
         hide(passwordError);
         hide(dangerError);
+    }
+
+    private void getProfilePicture() {
+        Image image = new Image(getClass().getResource("/DRJS-prototype/images/triple-t.png").toExternalForm());
+        littleProfileCircle.setFill(new ImagePattern(image));
+        bigProfileCircle.setFill(new ImagePattern(image));
+    }
+
+
+    // ---------- Back to Dashboard ----------
+    @FXML
+    private void onBack() {
+        Navigator.show(Navigator.DASHBOARD);
     }
 
     // ---------- Profile ----------
