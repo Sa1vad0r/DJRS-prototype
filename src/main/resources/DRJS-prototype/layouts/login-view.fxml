@@ -33,14 +33,14 @@
               <PasswordField fx:id="passwordField" onAction="#onSignIn" promptText="Password" />
          </children>
       </VBox>
-      <HBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="320.0" spacing="5.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="6.0" prefWidth="346.0" spacing="5.0">
          <children>
             <Label fx:id="errorLabel1" layoutX="10.0" layoutY="10.0" styleClass="subtitle" text="Don't have an account?" />
             <Button mnemonicParsing="false" onAction="#onCreateAccount" styleClass="button-link" text="Create an account" />
          </children>
       </HBox>
 
-              <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="34.0" styleClass="text-danger" />
+              <Label fx:id="errorLabel" alignment="CENTER" prefHeight="0.0" prefWidth="346.0" styleClass="text-danger" />
 
         <Button fx:id="signInButton" maxWidth="Infinity" onAction="#onSignIn" text="Sign in  →" />
       <HBox prefHeight="24.0" prefWidth="346.0">

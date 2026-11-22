@@ -49,6 +49,8 @@
 .text-accent  { -fx-text-fill: -djrs-accent; }
 .text-primary { -fx-text-fill: -djrs-primary; }
 .text-danger  { -fx-text-fill: -djrs-danger; }
+.table-cell.text-primary { -fx-text-fill: -djrs-primary; }
+.table-cell.text-muted { -fx-text-fill: -djrs-text-muted; }
 
 /* Big "Your Most Listened to Song was..." slides */
 .slide-title  { -fx-font-size: 44px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; -fx-text-alignment: center; }

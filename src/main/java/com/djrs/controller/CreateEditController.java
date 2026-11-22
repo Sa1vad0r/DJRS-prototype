@@ -8,18 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import java.net.URL;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.util.Callback;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -122,6 +115,28 @@ public class CreateEditController {
         return rewind;
     }
 
+    private <T> Callback<TableColumn<T, String>, TableCell<T, String>> styledCell(String... styles) {
+        return column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    getStyleClass().removeAll(styles);
+                } else {
+                    setText(item);
+
+                    for (String style : styles) {
+                        if (!getStyleClass().contains(style)) {
+                            getStyleClass().add(style);
+                        }
+                    }
+                }
+            }
+        };
+    }
+
     private void setupGui() {
         pageTitleLabel.setText(pageState == PageState.EDIT ? "Edit Rewind" : "Create Rewind");
 
@@ -139,6 +154,11 @@ public class CreateEditController {
         dateColumn.setCellValueFactory(d -> new SimpleStringProperty(
                 d.getValue().getDateListened() != null ? d.getValue().getDateListened().toString() : "-"));
         playsColumn.setCellValueFactory(d -> new SimpleStringProperty(String.valueOf(d.getValue().getPlays())));
+
+        // Style classes
+        titleColumn.setCellFactory(styledCell("app-logo"));
+        dateColumn.setCellFactory(styledCell("text-muted"));
+        playsColumn.setCellFactory(styledCell("text-primary"));
 
         tracksTable.setPlaceholder(new Label("No songs yet."));
         refreshTracks();
