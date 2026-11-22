@@ -7,12 +7,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="680" prefWidth="1000" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.CreateEditController">
+<BorderPane prefHeight="680" prefWidth="1000" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.CreateEditController">
 
     <top>
         <HBox styleClass="nav-bar">
@@ -49,7 +51,14 @@
             <HBox alignment="CENTER_LEFT">
                 <Label fx:id="tracksLabel" styleClass="heading" text="Tracks (0)" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#onAddSong" styleClass="button-accent" text="Manually Add Song" />
+                <Button onAction="#onAddSong" styleClass="button-accent" text="Manually Add Song">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             </HBox>
 
             <TableView fx:id="tracksTable" VBox.vgrow="ALWAYS">
@@ -67,9 +76,16 @@
             </TableView>
 
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Button onAction="#onCancel" styleClass="button-ghost" text="Cancel Changes" />
+                <Button onAction="#onCancel" prefHeight="42.0" prefWidth="134.0" styleClass="button-secondary" text="Cancel Changes" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#onSave" text="Save &amp; Generate Rewind" />
+                <Button onAction="#onSave" text="Save &amp; Generate Rewind">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/stars.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             </HBox>
         </VBox>
     </center>

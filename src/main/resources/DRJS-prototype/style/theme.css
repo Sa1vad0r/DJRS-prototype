@@ -36,14 +36,21 @@
 }
 
 /* ---------- Typography ---------- */
+.line {
+    -fx-border-color: -djrs-border;
+    -fx-border-width: 1px 0 0 0;
+}
 .label { -fx-text-fill: -djrs-text; }
 .label-muted, .subtitle { -fx-text-fill: -djrs-text-muted; -fx-font-size: 12px; }
+.subtitle-bold { -fx-text-fill: -djrs-text-muted; -fx-font-weight: bold; -fx-font-size: 12px; }
 .title        { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
 .heading      { -fx-font-size: 20px; -fx-font-weight: bold; }
 .app-logo     { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
 .text-accent  { -fx-text-fill: -djrs-accent; }
 .text-primary { -fx-text-fill: -djrs-primary; }
 .text-danger  { -fx-text-fill: -djrs-danger; }
+.table-cell.text-primary { -fx-text-fill: -djrs-primary; }
+.table-cell.text-muted { -fx-text-fill: -djrs-text-muted; }
 
 /* Big "Your Most Listened to Song was..." slides */
 .slide-title  { -fx-font-size: 44px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; -fx-text-alignment: center; }
@@ -52,7 +59,7 @@
 
 /* ---------- Layout containers ---------- */
 .nav-bar {
-    -fx-background-color: -djrs-bg;
+    -fx-background-color: -djrs-surface;
     -fx-padding: 10 20 10 20;
     -fx-spacing: 14;
     -fx-alignment: center-left;
@@ -61,6 +68,10 @@
 }
 .nav-link { -fx-text-fill: -djrs-text-muted; -fx-background-color: transparent; -fx-cursor: hand; }
 .nav-link:hover, .nav-link:selected { -fx-text-fill: -djrs-text; }
+
+.dialog-pane .button-bar .container {
+    -fx-alignment: center;
+}
 
 .card, .panel {
     -fx-background-color: -djrs-surface;
@@ -114,6 +125,7 @@
 
 .button-danger         { -fx-background-color: -djrs-danger; -fx-text-fill: white; }
 .button-danger:hover   { -fx-background-color: -djrs-danger-hover; }
+.button-danger:focused   { -fx-background-color: -djrs-danger-hover; }
 
 /* Outlined/ghost ("Previous", "Next" pills on the slides) */
 .button-ghost {
@@ -126,9 +138,21 @@
     -fx-font-size: 11px;
 }
 .button-ghost:hover { -fx-background-color: rgba(255,255,255,0.12); }
+.button-ghost:focused {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-background-insets: 0;
+    -fx-border-color: -djrs-text;
+}
+.button-ghost:pressed {
+    -fx-background-color: rgba(255,255,255,0.25);
+}
 
 .button-link { -fx-background-color: transparent; -fx-text-fill: -djrs-primary; -fx-underline: true; -fx-padding: 0; }
-.button-link:hover { -fx-text-fill: -djrs-primary-hover; }
+.button-link:hover { -fx-background-color: transparent, transparent;
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+    -fx-text-fill: -djrs-primary-hover;
+}
 
 /* ---------- Text inputs ---------- */
 .text-field, .password-field, .text-area, .combo-box-base, .spinner .text-field {
@@ -267,4 +291,10 @@
 .button-secondary       { -fx-background-color: rgba(255,255,255,0.12); -fx-text-fill: -djrs-text; }
 .button-secondary:hover { -fx-background-color: rgba(255,255,255,0.2); }
 .button-trash       { -fx-background-color: transparent; -fx-text-fill: -djrs-danger; }
-.button-trash:hover { -fx-background-color: rgba(255,255,255,0.12); }
+.button-trash:hover, .button-closed:focused { -fx-background-color: rgba(255,255,255,0.12); }
+.button-close       { -fx-background-color: transparent; -fx-text-fill: -djrs-text; }
+.button-close:hover, .button-close:focused {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+}

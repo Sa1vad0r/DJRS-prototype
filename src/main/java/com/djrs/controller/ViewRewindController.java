@@ -2,12 +2,14 @@
 package com.djrs.controller;
 
 import com.djrs.view.gui.Navigator;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
@@ -26,6 +28,7 @@ public class ViewRewindController {
 
     @FXML private StackPane slideStack;
     @FXML private HBox segmentBar;
+    @FXML BorderPane root;
     @FXML private Button prevButton;
     @FXML private Button nextButton;
     @FXML private PieChart genreChart;
@@ -43,6 +46,7 @@ public class ViewRewindController {
                 new PieChart.Data("Hip-Hop", 15),
                 new PieChart.Data("Other", 5)
         );
+        Platform.runLater(() -> root.requestFocus()); // Don't focus on anything when loading the rewind
         show(0);
     }
 
