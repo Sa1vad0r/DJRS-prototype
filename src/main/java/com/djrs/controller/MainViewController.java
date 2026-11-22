@@ -33,7 +33,7 @@ public class MainViewController {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     private static final List<String[]> demoRewinds = new ArrayList<>(List.of(
-            new String[]{"Spring 2026", "Mar 1, 2026 – May 31, 2026", "727", "king crimson.png"},
+            new String[]{"Spring 2026", "Mar 1, 2026 – May 31, 2026", "727", "king-crimson.png"},
             new String[]{"Vocaloid Summer 2026", "Jun 1, 2026 – Aug 31, 2026", "512", "teto.png"}));
 
     @FXML private Circle profileCircle;
@@ -46,7 +46,7 @@ public class MainViewController {
     }
 
     private void getProfilePicture() {
-        Image image = new Image(getClass().getResource("/DRJS-prototype/images/triple t.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/DRJS-prototype/images/triple-t.png").toExternalForm());
         profileCircle.setFill(new ImagePattern(image));
     }
 
