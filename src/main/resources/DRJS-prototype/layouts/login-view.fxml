@@ -4,29 +4,59 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.djrs.controller.LoginController"
-           prefWidth="1000" prefHeight="680">
-    <VBox spacing="10" alignment="CENTER_LEFT" maxWidth="380" maxHeight="-Infinity" styleClass="card">
+<StackPane prefHeight="680" prefWidth="1000" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.LoginController">
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="380" spacing="10" styleClass="card">
         <padding>
-            <Insets top="30" right="30" bottom="30" left="30"/>
+            <Insets bottom="30" left="30" right="30" top="30" />
         </padding>
-        <Label text="Welcome back" styleClass="heading"/>
-        <Label text="Sign in to revisit your listening history and create a new rewind." styleClass="subtitle" wrapText="true"/>
+        <Label alignment="CENTER" styleClass="heading" text="Welcome back" />
+        <Label alignment="TOP_CENTER" styleClass="subtitle" text="Sign in to revisit your listening history and create a new rewind." textAlignment="CENTER" wrapText="true" />
+      <VBox prefHeight="38.0" prefWidth="346.0" spacing="10.0">
+         <children>
+      
+              <Label styleClass="app-logo" text="Username" />
+              <TextField fx:id="usernameField" onAction="#onSignIn" promptText="Username" />
+         </children>
+      </VBox>
+      <VBox prefHeight="0.0" prefWidth="346.0" spacing="10.0">
+         <children>
+      
+              <Label styleClass="app-logo" text="Password" />
+              <PasswordField fx:id="passwordField" onAction="#onSignIn" promptText="Password" />
+         </children>
+      </VBox>
+      <HBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="320.0" spacing="5.0">
+         <children>
+            <Label fx:id="errorLabel1" layoutX="10.0" layoutY="10.0" styleClass="subtitle" text="Don't have an account?" />
+            <Button mnemonicParsing="false" onAction="#onCreateAccount" styleClass="button-link" text="Create an account" />
+         </children>
+      </HBox>
 
-        <Label text="Username"/>
-        <TextField fx:id="usernameField" promptText="Username" onAction="#onSignIn"/>
+              <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="34.0" styleClass="text-danger" />
 
-        <Label text="Password"/>
-        <PasswordField fx:id="passwordField" promptText="Password" onAction="#onSignIn"/>
-
-        <Label fx:id="errorLabel" text="" styleClass="text-danger"/>
-
-        <Button fx:id="signInButton" text="Sign in  →" maxWidth="Infinity" onAction="#onSignIn"/>
-        <Button text="Continue with Spotify" maxWidth="Infinity" onAction="#onSpotify"/>
+        <Button fx:id="signInButton" maxWidth="Infinity" onAction="#onSignIn" text="Sign in  →" />
+      <HBox prefHeight="24.0" prefWidth="346.0">
+         <children>
+            <Separator prefHeight="18.0" prefWidth="164.0" />
+            <Label alignment="TOP_CENTER" prefHeight="47.0" prefWidth="30.0" styleClass="subtitle-bold" text="OR" />
+            <Separator layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="164.0" />
+         </children>
+      </HBox>
+        <Button maxWidth="Infinity" onAction="#onSpotify" styleClass="button-secondary" text="Continue with Spotify">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/spotify.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
     </VBox>
 </StackPane>

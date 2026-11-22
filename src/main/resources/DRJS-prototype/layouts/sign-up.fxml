@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="680" prefWidth="1000" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.SignUpController">
+<StackPane prefHeight="680" prefWidth="1000" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.SignUpController">
     <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="380" spacing="10" styleClass="card">
         <padding>
             <Insets bottom="30" left="30" right="30" top="30" />
@@ -26,9 +26,9 @@
         <Label text="Password" />
         <PasswordField fx:id="passwordField" onAction="#onSignUp" promptText="Password" />
 
-        <Label fx:id="errorLabel" styleClass="text-danger" text="" />
+        <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="0.0" styleClass="text-danger" text="" />
 
-        <Button fx:id="signInButton" maxWidth="Infinity" onAction="#onSignUp" text="Create Account  →" />
-        <Button maxWidth="Infinity" onAction="#goToSignIn" text="Back to Sign In" />
+        <Button fx:id="signInButton" maxWidth="Infinity" onAction="#onSignUp" text="Sign Up  →" />
+        <Button maxWidth="Infinity" onAction="#goToSignIn" styleClass="button-secondary" text="Back to Sign In" />
     </VBox>
 </StackPane>

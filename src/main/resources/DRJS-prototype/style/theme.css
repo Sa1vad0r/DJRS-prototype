@@ -146,7 +146,11 @@
 }
 
 .button-link { -fx-background-color: transparent; -fx-text-fill: -djrs-primary; -fx-underline: true; -fx-padding: 0; }
-.button-link:hover { -fx-text-fill: -djrs-primary-hover; }
+.button-link:hover { -fx-background-color: transparent, transparent;
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+    -fx-text-fill: -djrs-primary-hover;
+}
 
 /* ---------- Text inputs ---------- */
 .text-field, .password-field, .text-area, .combo-box-base, .spinner .text-field {

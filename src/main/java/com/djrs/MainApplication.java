@@ -21,8 +21,7 @@ import java.net.URL;
  *   Old CLI flow:   run with the program argument "cli"
  */
 public class MainApplication extends Application {
-
-    private static final String START_FXML = Navigator.CREATE_USER;
+    private static final String START_FXML = Navigator.LOGIN;
     private static final String THEME_CSS = "/DRJS-prototype/style/theme.css";
 
     @Override

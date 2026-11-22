@@ -115,6 +115,11 @@ public class LoginController {
     }
 
     @FXML
+    private void onCreateAccount() {
+        Navigator.show(Navigator.CREATE_USER);
+    }
+
+    @FXML
     private void onSpotify() {
         errorLabel.setText("Spotify sign-in coming soon.");
     }
