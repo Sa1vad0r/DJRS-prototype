@@ -289,4 +289,10 @@
 .button-secondary       { -fx-background-color: rgba(255,255,255,0.12); -fx-text-fill: -djrs-text; }
 .button-secondary:hover { -fx-background-color: rgba(255,255,255,0.2); }
 .button-trash       { -fx-background-color: transparent; -fx-text-fill: -djrs-danger; }
-.button-trash:hover { -fx-background-color: rgba(255,255,255,0.12); }
+.button-trash:hover, .button-closed:focused { -fx-background-color: rgba(255,255,255,0.12); }
+.button-close       { -fx-background-color: transparent; -fx-text-fill: -djrs-text; }
+.button-close:hover, .button-close:focused {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+}

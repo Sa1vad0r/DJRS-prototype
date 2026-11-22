@@ -17,7 +17,7 @@
 <!-- Styling comes from /DRJS-prototype/style/theme.css (added to the Scene in MainApplication).
      This ONE file holds all 4 slides. ViewRewindController shows one slide at a time. -->
 
-<BorderPane prefHeight="680.0" prefWidth="1000.0" styleClass="rewind-slide" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.ViewRewindController">
+<BorderPane fx:id="root" prefHeight="680.0" prefWidth="1000.0" styleClass="rewind-slide" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.djrs.controller.ViewRewindController">
 
     <!-- ===================== TOP: progress segments + logo/title/close ===================== -->
     <top>
@@ -37,7 +37,7 @@
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="rewindNameLabel" styleClass="label-muted" text="Vocaloid Summer 2026" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" styleClass="button-ghost" text="✕" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" styleClass="button-close" text="✕" />
             </HBox>
 
         </VBox>
