@@ -36,8 +36,13 @@
 }
 
 /* ---------- Typography ---------- */
+.line {
+    -fx-border-color: -djrs-border;
+    -fx-border-width: 1px 0 0 0;
+}
 .label { -fx-text-fill: -djrs-text; }
 .label-muted, .subtitle { -fx-text-fill: -djrs-text-muted; -fx-font-size: 12px; }
+.subtitle-bold { -fx-text-fill: -djrs-text-muted; -fx-font-weight: bold; -fx-font-size: 12px; }
 .title        { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
 .heading      { -fx-font-size: 20px; -fx-font-weight: bold; }
 .app-logo     { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -djrs-text; }
@@ -52,7 +57,7 @@
 
 /* ---------- Layout containers ---------- */
 .nav-bar {
-    -fx-background-color: -djrs-bg;
+    -fx-background-color: -djrs-surface;
     -fx-padding: 10 20 10 20;
     -fx-spacing: 14;
     -fx-alignment: center-left;
@@ -61,6 +66,10 @@
 }
 .nav-link { -fx-text-fill: -djrs-text-muted; -fx-background-color: transparent; -fx-cursor: hand; }
 .nav-link:hover, .nav-link:selected { -fx-text-fill: -djrs-text; }
+
+.dialog-pane .button-bar .container {
+    -fx-alignment: center;
+}
 
 .card, .panel {
     -fx-background-color: -djrs-surface;
@@ -114,6 +123,7 @@
 
 .button-danger         { -fx-background-color: -djrs-danger; -fx-text-fill: white; }
 .button-danger:hover   { -fx-background-color: -djrs-danger-hover; }
+.button-danger:focused   { -fx-background-color: -djrs-danger-hover; }
 
 /* Outlined/ghost ("Previous", "Next" pills on the slides) */
 .button-ghost {

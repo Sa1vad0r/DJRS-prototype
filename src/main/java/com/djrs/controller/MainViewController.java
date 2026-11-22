@@ -6,6 +6,7 @@ import com.djrs.model.UserSession;
 import com.djrs.view.gui.Navigator;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -23,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -158,13 +160,50 @@ public class MainViewController {
     }
 
     private void confirmDelete(String title, Runnable onRemove) {
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Delete Rewind");
-        confirm.setHeaderText("Delete \"" + title + "\"?");
-        confirm.setContentText("This can't be undone.");
+        Alert confirm = new Alert(Alert.AlertType.ERROR);
+        // confirm.setTitle("Delete Rewind");
+        // confirm.setHeaderText("Delete \"" + title + "\"?");
+        // confirm.setContentText("This can't be undone.");
+        confirm.setGraphic(new ImageView(new Image(getClass().getResource("/DRJS-prototype/images/delete-warning.png").toExternalForm())));
+
+        // Setting up labels and buttons
+        Label deleteLabel = new Label("Delete \"" + title + "\"?");
+        deleteLabel.getStyleClass().add("title");
+        Label subtitle = new Label("This action is permanent and cannot be undone.");
+        subtitle.getStyleClass().add("subtitle");
+
+        VBox headerText = new VBox(deleteLabel, subtitle);
+        HBox header = new HBox(10, confirm.getGraphic(), headerText);
+        headerText.setAlignment(Pos.CENTER_LEFT);
+        header.setAlignment(Pos.CENTER_LEFT);
+        confirm.setGraphic(null);
+        confirm.getDialogPane().setHeader(header);
 
         ButtonType delete = new ButtonType("Delete", ButtonBar.ButtonData.OK_DONE);
         confirm.getButtonTypes().setAll(delete, ButtonType.CANCEL);
+
+        Button cancel = (Button) confirm.getDialogPane().lookupButton(ButtonType.CANCEL);
+        cancel.getStyleClass().add("button-ghost");
+        Button deleteButton = (Button) confirm.getDialogPane().lookupButton(delete);
+        deleteButton.getStyleClass().add("button-danger");
+
+        Label first = new Label("Are you sure you want to delete ");
+        Label titleLabel = new Label(title);
+        Label last = new Label("?");
+
+        first.getStyleClass().add("subtitle");
+        titleLabel.getStyleClass().add("subtitle-bold");
+        last.getStyleClass().add("subtitle");
+
+        HBox message = new HBox(0, first, titleLabel, last);
+        message.setAlignment(Pos.CENTER);
+
+        VBox content = new VBox(10, new Separator(), message);
+        content.setAlignment(Pos.CENTER);
+        content.setFillWidth(true);
+        content.setMaxWidth(Double.MAX_VALUE);
+
+        confirm.getDialogPane().setContent(content);
 
         URL css = getClass().getResource("/DRJS-prototype/style/theme.css");
         if (css != null) {
@@ -179,9 +218,10 @@ public class MainViewController {
         });
     }
 
-    @FXML
-    private void onLibrary() {
-        Navigator.show(Navigator.DASHBOARD);
+    private Text boldText(String text) {
+        Text boldText = new Text(text);
+        boldText.setStyle("-fx-font-weight: bold;");
+        return boldText;
     }
 
     @FXML
