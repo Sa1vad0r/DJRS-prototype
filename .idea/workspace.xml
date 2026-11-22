@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Need to double-check with dashboard.fxml. See discord for more">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/rewind.fxml" afterDir="false" />
+    <list default="true" id="dd424840-cea1-411d-94bd-f9bf933714e5" name="Changes" comment="Finished dashboard.fxml and workspace.xml (NOTE: Majority of elements are hard coded)&#10;ViewRewindController was implemented to work with the fxml. I also had to screw around with workspace.xml to get things to work.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/ViewRewindController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/ViewRewindController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/UsersData.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/UsersData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/controller/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/djrs/view/gui/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/djrs/view/gui/Navigator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DRJS-prototype/layouts/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +24,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -228,6 +231,7 @@
     <MESSAGE value="Added to dashboardCli and it's controller. Still working on the switch and further controller methods." />
     <MESSAGE value="Added dashboard.fxml and login.fxml. I have yet to make them fit the theme." />
     <MESSAGE value="Need to double-check with dashboard.fxml. See discord for more" />
-    <option name="LAST_COMMIT_MESSAGE" value="Need to double-check with dashboard.fxml. See discord for more" />
+    <MESSAGE value="Finished dashboard.fxml and workspace.xml (NOTE: Majority of elements are hard coded)&#10;ViewRewindController was implemented to work with the fxml. I also had to screw around with workspace.xml to get things to work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished dashboard.fxml and workspace.xml (NOTE: Majority of elements are hard coded)&#10;ViewRewindController was implemented to work with the fxml. I also had to screw around with workspace.xml to get things to work." />
   </component>
 </project>

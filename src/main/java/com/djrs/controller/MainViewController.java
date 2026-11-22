@@ -138,6 +138,11 @@ public class MainViewController {
     }
 
     @FXML
+    private void onOpenSettings() {
+        Navigator.show(Navigator.SETTINGS);
+    }
+
+    @FXML
     private void onSignOut() {
         UserSession.getInstance().setCurrentUser(new User());
         Navigator.show(Navigator.LOGIN);

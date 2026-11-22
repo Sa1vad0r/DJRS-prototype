@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<!-- Styling comes from /DRJS-prototype/style/theme.css (added to the Scene in MainApplication) -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.djrs.controller.SettingsController"
+            prefWidth="1000.0" prefHeight="680.0">
+
+    <!-- ===================== TOP: nav bar (logo, search, profile circle) ===================== -->
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="nav-bar" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="DJRS Rewind" styleClass="app-logo"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <TextField promptText="Search" prefWidth="200.0"/>
+                <Circle fill="#ffe95c" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="avatar"/>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- ===================== CENTER: scrolling settings + toast popups on top ===================== -->
+    <center>
+        <StackPane>
+            <children>
+
+                <!-- Layer 1: the settings page. ScrollPane so it scrolls if the window is short. -->
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="edge-to-edge">
+                    <content>
+                        <VBox alignment="TOP_CENTER">
+                            <padding>
+                                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
+                            </padding>
+                            <children>
+
+                                <!-- The big rounded panel. maxWidth keeps it from stretching too wide. -->
+                                <VBox styleClass="settings-card" maxWidth="720.0" spacing="22.0">
+                                    <children>
+
+                                        <!-- ================= PROFILE ================= -->
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <Label text="Profile" styleClass="heading"/>
+                                                <Label text="Manage how your identity appears across DJRS rewind." styleClass="subtitle"/>
+                                                <Separator/>
+
+                                                <HBox spacing="20.0" alignment="TOP_LEFT">
+                                                    <children>
+                                                        <!-- Avatar + change picture link -->
+                                                        <VBox alignment="TOP_CENTER" spacing="6.0">
+                                                            <children>
+                                                                <Circle fill="#ffe95c" radius="32.0" styleClass="avatar"/>
+                                                                <Button fx:id="changePictureButton" mnemonicParsing="false"
+                                                                        text="Change Profile Picture"
+                                                                        styleClass="button button-link button-tiny"
+                                                                        onAction="#onChangePicture"/>
+                                                            </children>
+                                                        </VBox>
+
+                                                        <!-- Display name / username fields -->
+                                                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <HBox spacing="12.0">
+                                                                    <children>
+                                                                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                                                            <children>
+                                                                                <Label text="Display Name" styleClass="field-label"/>
+                                                                                <TextField fx:id="displayNameField" maxWidth="Infinity"/>
+                                                                            </children>
+                                                                        </VBox>
+                                                                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                                                            <children>
+                                                                                <Label text="Username" styleClass="field-label"/>
+                                                                                <TextField fx:id="usernameField" maxWidth="Infinity"/>
+                                                                            </children>
+                                                                        </VBox>
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <Label fx:id="profileError" styleClass="alert-error" wrapText="true" visible="false" managed="false"/>
+                                                <HBox alignment="CENTER">
+                                                    <children>
+                                                        <Button fx:id="saveProfileButton" mnemonicParsing="false" minWidth="-Infinity"
+                                                                text="✓  Save Profile"
+                                                                styleClass="button button-small button-accent"
+                                                                onAction="#onSaveProfile"/>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                        <Separator/>
+
+                                        <!-- ================= SECURITY ================= -->
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <Label text="Security" styleClass="heading"/>
+                                                <Label text="Fortify your account by setting your password." styleClass="subtitle"/>
+                                                <Separator/>
+
+                                                <VBox spacing="4.0">
+                                                    <children>
+                                                        <Label text="Password" styleClass="field-label"/>
+                                                        <!-- Lock icon sits on top of the right edge of the field -->
+                                                        <StackPane alignment="CENTER_RIGHT">
+                                                            <children>
+                                                                <PasswordField fx:id="passwordField" maxWidth="Infinity" promptText="New password"/>
+                                                                <Label text="🔒" styleClass="label-muted" mouseTransparent="true">
+                                                                    <StackPane.margin>
+                                                                        <Insets right="12.0"/>
+                                                                    </StackPane.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </VBox>
+
+                                                <Label fx:id="passwordError" styleClass="alert-error" wrapText="true" visible="false" managed="false"/>
+                                                <HBox alignment="CENTER">
+                                                    <children>
+                                                        <Button fx:id="savePasswordButton" mnemonicParsing="false" minWidth="-Infinity"
+                                                                text="✓  Save Password"
+                                                                styleClass="button button-small button-accent"
+                                                                onAction="#onSavePassword"/>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                        <Separator/>
+
+                                        <!-- ================= DANGER ZONE ================= -->
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <Label text="Danger Zone" styleClass="heading"/>
+                                                <Label text="Take a moment to read the buttons. These actions are permanent and cannot be undone."
+                                                       styleClass="subtitle"/>
+                                                <Separator/>
+
+                                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <Button fx:id="deleteDataButton" mnemonicParsing="false" minWidth="-Infinity"
+                                                                text="Delete Data"
+                                                                styleClass="button button-small button-secondary"
+                                                                onAction="#onDeleteData"/>
+                                                        <Button fx:id="deleteAccountButton" mnemonicParsing="false" minWidth="-Infinity"
+                                                                text="Delete Account"
+                                                                styleClass="button button-small button-danger"
+                                                                onAction="#onDeleteAccount"/>
+                                                    </children>
+                                                </HBox>
+                                                <Label fx:id="dangerError" styleClass="alert-error" wrapText="true" visible="false" managed="false"/>
+                                            </children>
+                                        </VBox>
+
+                                        <Separator/>
+
+                                        <!-- ================= SIGN OUT ================= -->
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <Label text="Sign Out" styleClass="heading"/>
+                                                <Label text="You'll need to sign in again to access your saved collections." styleClass="label"/>
+                                                <Separator/>
+
+                                                <HBox alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <Button fx:id="signOutButton" mnemonicParsing="false" minWidth="-Infinity"
+                                                                text="Sign out"
+                                                                styleClass="button button-danger"
+                                                                onAction="#onSignOut"/>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                    </children>
+                                </VBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <!-- Layer 2: toast messages in the bottom-right corner.
+                     pickOnBounds=false lets clicks pass through the empty parts to the page below.
+                     Both start hidden; SettingsController shows them for a few seconds. -->
+                <VBox alignment="BOTTOM_RIGHT" spacing="8.0" pickOnBounds="false" mouseTransparent="true">
+                    <padding>
+                        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                    </padding>
+                    <children>
+                        <Label fx:id="profileToast" text="Profile Saved Successfully." styleClass="toast"
+                               visible="false" managed="false"/>
+                        <Label fx:id="passwordToast" text="Password Saved Successfully." styleClass="toast"
+                               visible="false" managed="false"/>
+                        <Label fx:id="dataToast" text="Rewind data deleted." styleClass="toast"
+                               visible="false" managed="false"/>
+                    </children>
+                </VBox>
+
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

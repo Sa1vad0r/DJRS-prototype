@@ -13,6 +13,7 @@ public class Navigator {
     public static final String LOGIN = "/DRJS-prototype/layouts/login-view.fxml";
     public static final String DASHBOARD = "/DRJS-prototype/layouts/dashboard.fxml";
     public static final String VIEW_REWIND = "/DRJS-prototype/layouts/rewind.fxml";
+    public static final String SETTINGS = "/DRJS-prototype/layouts/settings.fxml";
 
     private static Scene scene;
 
