@@ -37,7 +37,7 @@
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="rewindNameLabel" styleClass="label-muted" text="Vocaloid Summer 2026" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" styleClass="button-close" text="✕" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" styleClass="button-ghost" text="✕" />
             </HBox>
 
         </VBox>
@@ -45,8 +45,8 @@
 
     <!-- ===================== CENTER: glow blobs behind, 4 slides on top ===================== -->
     <center>
-        <StackPane><!-- Layer 1: blurry colored blobs. mouseTransparent so clicks pass through. -->
-            <Pane mouseTransparent="true">
+        <StackPane mouseTransparent="true"><!-- Layer 1: blurry colored blobs. mouseTransparent so clicks pass through. -->
+            <Pane>
                 <Circle layoutX="200.0" layoutY="120.0" radius="90.0" styleClass="glow-yellow">
                     <effect>
                         <GaussianBlur radius="63.0" />
@@ -168,9 +168,9 @@
             <padding>
                 <Insets bottom="24.0" left="24.0" right="24.0" top="10.0" />
             </padding>
-            <Button fx:id="prevButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPrevious" styleClass="button button-pill" text="←  Previous" />
+            <Button fx:id="prevButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPrevious" styleClass="button-ghost" text="←  Previous" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="nextButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNext" styleClass="button button-pill" text="Next  →" />
+            <Button fx:id="nextButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNext" styleClass="button-ghost" text="Next  →" />
         </HBox>
     </bottom>
 </BorderPane>

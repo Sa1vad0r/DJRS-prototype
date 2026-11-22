@@ -126,6 +126,14 @@
     -fx-font-size: 11px;
 }
 .button-ghost:hover { -fx-background-color: rgba(255,255,255,0.12); }
+.button-ghost:focused {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-background-insets: 0;
+    -fx-border-color: -djrs-text;
+}
+.button-ghost:pressed {
+    -fx-background-color: rgba(255,255,255,0.25);
+}
 
 .button-link { -fx-background-color: transparent; -fx-text-fill: -djrs-primary; -fx-underline: true; -fx-padding: 0; }
 .button-link:hover { -fx-text-fill: -djrs-primary-hover; }
