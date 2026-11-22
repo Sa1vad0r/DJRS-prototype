@@ -178,6 +178,7 @@ public class MainViewController {
 
     private void confirmDelete(String title, Runnable onRemove) {
         Alert confirm = new Alert(Alert.AlertType.ERROR);
+        confirm.setTitle("Delete Rewind");
         confirm.setGraphic(new ImageView(new Image(getClass().getResource("/DRJS-prototype/images/delete-warning.png").toExternalForm())));
 
         // Setting up labels and buttons
