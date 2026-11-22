@@ -141,7 +141,7 @@ public class MainViewController {
 
         Button editButton = new Button("Edit");
         editButton.getStyleClass().addAll("button-small", "button-secondary");
-        editButton.setDisable(true);
+        editButton.setOnAction(e -> onEditRewind());
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -218,15 +218,14 @@ public class MainViewController {
         });
     }
 
-    private Text boldText(String text) {
-        Text boldText = new Text(text);
-        boldText.setStyle("-fx-font-weight: bold;");
-        return boldText;
+    // Rewind is null for now; This would be the rewind clicked later
+    private void onEditRewind() {
+        Navigator.showCreateEdit(CreateEditController.PageState.EDIT, null);
     }
 
     @FXML
     private void onAddRewind() {
-        Navigator.show(Navigator.CREATE_REWIND);
+        Navigator.showCreateEdit(CreateEditController.PageState.CREATE, null);
     }
 
     @FXML

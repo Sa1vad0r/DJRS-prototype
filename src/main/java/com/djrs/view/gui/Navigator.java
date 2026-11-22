@@ -1,5 +1,7 @@
 package com.djrs.view.gui;
 
+import com.djrs.controller.CreateEditController;
+import com.djrs.model.Rewind;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,6 +31,18 @@ public class Navigator {
             scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException("Could not load " + fxmlPath, e);
+        }
+    }
+
+    public static void showCreateEdit(CreateEditController.PageState state, Rewind rewind) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    Navigator.class.getResource(CREATE_REWIND)); // your actual path
+            loader.setControllerFactory(type -> new CreateEditController(state, rewind));
+            Parent root = loader.load();
+            scene.setRoot(root); // whatever your scene variable is called
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

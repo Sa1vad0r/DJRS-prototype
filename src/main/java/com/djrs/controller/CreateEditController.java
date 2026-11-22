@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class CreateEditController {
@@ -59,11 +60,18 @@ public class CreateEditController {
         this.pageState = pageState;
     }
 
+    public CreateEditController(PageState pageState, Rewind rewind) {
+        this.currentSession = UserSession.getInstance();
+        this.pageState = pageState;
+        this.currentRewind = rewind;   // null when creating
+    }
+
     public void initialize() {
 
         System.out.println("[Controller]: Loading system configuration data...");
 
         if (pageState == PageState.EDIT) {
+            currentRewind = buildMockSpringRewind();
         } else {
             currentRewind = new Rewind();
         }
@@ -73,8 +81,55 @@ public class CreateEditController {
         }
     }
 
+    private void addMockSong(Rewind rewind, String id, String title, String artist,
+                             String album, String genre, int plays, LocalDate dateListened) {
+        rewind.addSong(new Song(id, title,
+                new ArrayList<>(List.of(artist)),
+                new Album(album),
+                new ArrayList<>(List.of(genre)),
+                plays, dateListened));
+    }
+
+    private Rewind buildMockSpringRewind() {
+        DateRange range = new DateRange(
+                LocalDate.of(2026, 1, 15).atStartOfDay(),
+                LocalDate.of(2026, 5, 12).atStartOfDay());
+
+        Rewind rewind = new Rewind("1", "Spring 2026", range);
+
+        addMockSong(rewind, "1", "In the Court of the Crimson King", "King Crimson",
+                "In the Court of the Crimson King", "Progressive Rock", 87, LocalDate.of(2026, 3, 2));
+
+        addMockSong(rewind, "2", "Do I Wanna Know?", "Arctic Monkeys",
+                "AM", "Indie Rock", 64, LocalDate.of(2026, 1, 28));
+        addMockSong(rewind, "3", "Bohemian Rhapsody", "Queen",
+                "A Night at the Opera", "Rock", 58, LocalDate.of(2026, 2, 14));
+        addMockSong(rewind, "4", "Paranoid Android", "Radiohead",
+                "OK Computer", "Alternative Rock", 51, LocalDate.of(2026, 3, 19));
+        addMockSong(rewind, "5", "Nights", "Frank Ocean",
+                "Blonde", "R&B", 47, LocalDate.of(2026, 4, 5));
+        addMockSong(rewind, "6", "Get Lucky", "Daft Punk",
+                "Random Access Memories", "Electronic", 39, LocalDate.of(2026, 2, 22));
+        addMockSong(rewind, "7", "Redbone", "Childish Gambino",
+                "Awaken, My Love!", "Funk", 33, LocalDate.of(2026, 4, 21));
+        addMockSong(rewind, "8", "Everything In Its Right Place", "Radiohead",
+                "Kid A", "Experimental", 28, LocalDate.of(2026, 5, 3));
+        addMockSong(rewind, "9", "Gimme Shelter", "The Rolling Stones",
+                "Let It Bleed", "Rock", 21, LocalDate.of(2026, 1, 20));
+        addMockSong(rewind, "10", "Alright", "Kendrick Lamar",
+                "To Pimp a Butterfly", "Hip-Hop", 17, LocalDate.of(2026, 3, 30));
+
+        return rewind;
+    }
+
     private void setupGui() {
         pageTitleLabel.setText(pageState == PageState.EDIT ? "Edit Rewind" : "Create Rewind");
+
+        if (pageState == PageState.EDIT) {
+            titleField.setText(currentRewind.getTitle());
+            startPicker.setValue(currentRewind.getDateRange().getStart().toLocalDate());
+            endPicker.setValue(currentRewind.getDateRange().getEnd().toLocalDate());
+        }
 
         titleColumn.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getTitle()));
         artistColumn.setCellValueFactory(d -> new SimpleStringProperty(String.join(", ", d.getValue().getArtists())));
