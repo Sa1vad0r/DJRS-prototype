@@ -271,6 +271,7 @@ public class SettingsController {
     /** Pops up an OK/Cancel box (themed like the delete-rewind box). True if OK was clicked. */
     private boolean confirm(String toDelete, String subtitleText) {
         Alert confirm = new Alert(Alert.AlertType.ERROR);
+        confirm.setTitle("Delete " + toDelete);
         confirm.setGraphic(new ImageView(new Image(getClass().getResource("/DRJS-prototype/images/delete-warning.png").toExternalForm())));
 
         // Setting up labels and buttons
